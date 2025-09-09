@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://caq0pmp5bi7ex"]
+
+[ext_resource type="Script" uid="uid://csbdcm6axbrhq" path="res://scenes/main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dfmcx4p165aea" path="res://scenes/rail.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ig7tw")
+
+[node name="Rail80" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 80.0
+
+[node name="Rail120" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 120.0
+
+[node name="Rail160" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 160.0
+
+[node name="Rail200" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 200.0
+
+[node name="Rail240" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 240.0
+
+[node name="Rail280" parent="." instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 280.0
+
+[node name="Rail320" parent="." instance=ExtResource("2_0xm2m")]
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0

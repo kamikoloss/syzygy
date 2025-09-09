@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b185sasx51q0n"]
+
+[ext_resource type="Script" uid="uid://djmmguviuq25j" path="res://scenes/chip.gd" id="1_ojlvc"]
+[ext_resource type="Texture2D" uid="uid://byjint8y6mjij" path="res://textures/base_circle.svg" id="1_ri5qt"]
+
+[node name="Chip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ojlvc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("1_ri5qt")
+expand_mode = 1

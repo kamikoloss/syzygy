@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfmcx4p165aea"]
+
+[ext_resource type="Script" uid="uid://bh1363dojikb4" path="res://scenes/rail.gd" id="1_6f37g"]
+[ext_resource type="Texture2D" uid="uid://gwvgv6li7dbj" path="res://textures/base_triangle.svg" id="2_d273v"]
+[ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="2_stgit"]
+
+[node name="Rail" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6f37g")
+chip_scene = ExtResource("2_stgit")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -40.0
+offset_right = 10.0
+offset_bottom = -20.0
+texture = ExtResource("2_d273v")
+expand_mode = 1
