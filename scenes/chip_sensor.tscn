@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk5qrvbech16c"]
+
+[ext_resource type="Script" uid="uid://dbk0bm7tqcw7y" path="res://scenes/chip_sensor.gd" id="1_mj21l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+
+[node name="ChipSensor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("1_mj21l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 40.0
+offset_right = 10.0
+offset_bottom = 360.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-40, 200)
+scale = Vector2(2, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0wfyh")

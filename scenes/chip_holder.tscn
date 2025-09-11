@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt7jq7m0wseur"]
+
+[ext_resource type="Script" uid="uid://ccu8p5jkn0u7t" path="res://scenes/chip_holder.gd" id="1_byowi"]
+[ext_resource type="Texture2D" uid="uid://byjint8y6mjij" path="res://textures/base_circle.svg" id="1_fpy3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0wfyh"]
+radius = 5.0
+
+[node name="ChipHolder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_byowi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.8)
+layout_mode = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+texture = ExtResource("1_fpy3y")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0wfyh")
