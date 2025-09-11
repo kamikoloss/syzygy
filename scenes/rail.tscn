@@ -12,9 +12,10 @@ chip_scene = ExtResource("2_stgit")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -10.0
-offset_top = -40.0
-offset_right = 10.0
-offset_bottom = -20.0
+offset_left = 40.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 10.0
+rotation = 1.5708
 texture = ExtResource("2_d273v")
 expand_mode = 1

@@ -16,6 +16,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 circle_radius = 80.0
 rotate_speed = 0.25
+holder_count = 1
 
 [node name="Rail120" parent="." instance=ExtResource("2_0xm2m")]
 layout_mode = 0
@@ -68,6 +69,7 @@ offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 rotate_speed = 0.25
+holder_count = 32
 
 [node name="Sensor" type="Control" parent="."]
 anchors_preset = 0
