@@ -2,6 +2,7 @@ class_name Rail
 extends Control
 
 @export var circle_radius := 320.0
+@export var rotate_speed := 1.0
 @export var chip_scene: PackedScene
 
 var _tween_rotate: Tween
@@ -22,10 +23,8 @@ func _draw():
 
 
 func start_rotate() -> void:
-    # 320 が1周する間に 80 は4周
-    var duration := 320 / circle_radius
-
+    var duration := 1.0 / rotate_speed
     _tween_rotate = create_tween()
     _tween_rotate.set_loops()
-    _tween_rotate.tween_property(self, "rotation_degrees", 360.0, 320 / circle_radius)
+    _tween_rotate.tween_property(self, "rotation_degrees", 360.0, duration)
     _tween_rotate.tween_callback(func(): rotation_degrees = 0.0)
