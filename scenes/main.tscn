@@ -11,16 +11,20 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
 
-[node name="Rail80" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Objects" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Rail80" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 circle_radius = 80.0
+rotate_speed = 0.25
 holder_count = 2
 
-[node name="Rail120" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail120" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
@@ -29,7 +33,7 @@ offset_bottom = 360.0
 circle_radius = 120.0
 rotate_speed = 0.25
 
-[node name="Rail160" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail160" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
@@ -39,17 +43,17 @@ circle_radius = 160.0
 rotate_speed = 0.25
 holder_count = 8
 
-[node name="Rail200" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail200" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 circle_radius = 200.0
-rotate_speed = 0.5
+rotate_speed = 0.25
 holder_count = 12
 
-[node name="Rail240" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail240" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
@@ -59,17 +63,17 @@ circle_radius = 240.0
 rotate_speed = 0.25
 holder_count = 24
 
-[node name="Rail280" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail280" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 circle_radius = 280.0
-rotate_speed = 0.5
+rotate_speed = 0.25
 holder_count = 16
 
-[node name="Rail320" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Rail320" parent="Objects" instance=ExtResource("2_0xm2m")]
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
@@ -77,14 +81,69 @@ offset_bottom = 360.0
 rotate_speed = 0.25
 holder_count = 32
 
-[node name="ChipSensor" parent="." instance=ExtResource("3_sugp2")]
+[node name="ChipSensor" parent="Objects" instance=ExtResource("3_sugp2")]
 
-[node name="Chip" parent="." instance=ExtResource("4_jyhfs")]
+[node name="Chip" parent="Objects" instance=ExtResource("4_jyhfs")]
 visible = false
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="ChipHolder" parent="." instance=ExtResource("4_tbgi4")]
+[node name="ChipHolder" parent="Objects" instance=ExtResource("4_tbgi4")]
 visible = false
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="MarginContainerLeft" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainerLeft"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonPlay" type="Button" parent="UI/MarginContainerLeft/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "PLAY"
+
+[node name="ButtonStop" type="Button" parent="UI/MarginContainerLeft/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "STOP"
+
+[node name="MarginContainerRight" type="MarginContainer" parent="UI"]
+offset_left = 1040.0
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainerRight"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="UI/MarginContainerRight/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "999999999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/MarginContainerRight/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "999999999999"
+horizontal_alignment = 1
+vertical_alignment = 1
