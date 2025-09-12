@@ -4,13 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://gwvgv6li7dbj" path="res://textures/base_triangle.svg" id="2_d273v"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="2_stgit"]
 
-[node name="Rail" type="Control"]
+[node name="Rail" type="Control" node_paths=PackedStringArray("chips_parent")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6f37g")
+chips_parent = NodePath("Chips")
 chip_scene = ExtResource("2_stgit")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Chips" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="Chips"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = -10.0
