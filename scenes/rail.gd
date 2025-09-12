@@ -34,9 +34,9 @@ func set_holders() -> void:
         chip_holder.position = pos
         chips_parent.add_child(chip_holder)
         # debug
-        #var chip: Chip = chip_scene.instantiate()
-        #chip.position = pos - chip.custom_minimum_size / 2
-        #chips_parent.add_child(chip)
+        var chip: Chip = chip_scene.instantiate()
+        chip.position = pos - chip.custom_minimum_size / 2
+        chips_parent.add_child(chip)
 
 
 func start_rotate() -> void:

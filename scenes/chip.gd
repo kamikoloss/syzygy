@@ -2,11 +2,16 @@ class_name Chip
 extends Control
 
 @export var area: Area2D
+@export var label: Label
 
 
 func _ready() -> void:
     area.area_entered.connect(_on_area_entered)
     area.area_exited.connect(_on_area_exited)
+
+
+func _process(delta: float) -> void:
+    label.rotation = get_global_transform().get_rotation() * -1
 
 
 func _on_area_entered(other_area: Area2D) -> void:
