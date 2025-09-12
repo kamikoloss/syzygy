@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("button_play", "button_stop")]
+[node name="Main" type="Control" node_paths=PackedStringArray("button_play", "button_stop", "label_score_total")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
 button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
 button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
+label_score_total = NodePath("UI/LabelScoreTotal")
 
 [node name="Objects" type="Control" parent="."]
 anchors_preset = 0
@@ -307,7 +308,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LabelTotal" type="Label" parent="UI"]
+[node name="LabelScoreTotal" type="Label" parent="UI"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 offset_left = 800.0
