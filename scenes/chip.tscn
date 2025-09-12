@@ -7,6 +7,7 @@
 radius = 20.0
 
 [node name="Chip" type="Control" node_paths=PackedStringArray("area")]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ojlvc")
@@ -15,14 +16,13 @@ area = NodePath("Area2D")
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.8)
 layout_mode = 0
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("1_ri5qt")
 expand_mode = 1
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_su0yu")

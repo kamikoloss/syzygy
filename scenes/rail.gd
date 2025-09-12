@@ -1,6 +1,9 @@
 class_name Rail
 extends Control
 
+const CIRCLE_COLOR := Color(1.0, 1.0, 1.0)
+const LINE_COLOR := Color(0.4, 0.4, 0.4)
+
 @export var circle_radius := 320.0 # px
 @export var rotate_speed := 1.0 # rotates / sec
 @export var holder_count := 4
@@ -18,15 +21,16 @@ func _ready() -> void:
 
 
 func _draw():
-    draw_circle(Vector2.ZERO, circle_radius, Color.WHITE, false, -1.0, false)
+    draw_line(Vector2(0, circle_radius * -1), Vector2(1280, circle_radius * -1), LINE_COLOR)
+    draw_circle(Vector2.ZERO, circle_radius, CIRCLE_COLOR, false)
 
 
 func set_holders() -> void:
     for i in holder_count:
         var rad := PI * 2 / holder_count * (i + 1)
         var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
-        var chip: Chip = chip_scene.instantiate()
-        chip.position = pos
+        var chip: Chip = chip_scene.instantiate() # debug
+        chip.position = pos - chip.custom_minimum_size / 2 # debug
         chips_parent.add_child(chip)
 
 
