@@ -11,6 +11,7 @@ const LINE_COLOR := Color(0.4, 0.4, 0.4)
 @export var chips_parent: Control
 
 @export var chip_scene: PackedScene
+@export var chip_holder_scene: PackedScene
 
 var _tween_rotate: Tween
 
@@ -29,9 +30,13 @@ func set_holders() -> void:
     for i in holder_count:
         var rad := PI * 2 / holder_count * (i + 1)
         var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
-        var chip: Chip = chip_scene.instantiate() # debug
-        chip.position = pos - chip.custom_minimum_size / 2 # debug
-        chips_parent.add_child(chip)
+        var chip_holder: ChipHolder = chip_holder_scene.instantiate()
+        chip_holder.position = pos
+        chips_parent.add_child(chip_holder)
+        # debug
+        #var chip: Chip = chip_scene.instantiate()
+        #chip.position = pos - chip.custom_minimum_size / 2
+        #chips_parent.add_child(chip)
 
 
 func start_rotate() -> void:

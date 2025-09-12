@@ -12,7 +12,7 @@ anchors_preset = 0
 script = ExtResource("1_byowi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.8)
+self_modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
 offset_left = -5.0
 offset_top = -5.0

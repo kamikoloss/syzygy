@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfmcx4p165aea"]
+[gd_scene load_steps=5 format=3 uid="uid://dfmcx4p165aea"]
 
 [ext_resource type="Script" uid="uid://bh1363dojikb4" path="res://scenes/rail.gd" id="1_6f37g"]
 [ext_resource type="Texture2D" uid="uid://gwvgv6li7dbj" path="res://textures/base_triangle.svg" id="2_d273v"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="2_stgit"]
+[ext_resource type="PackedScene" uid="uid://bt7jq7m0wseur" path="res://scenes/chip_holder.tscn" id="3_u70y5"]
 
 [node name="Rail" type="Control" node_paths=PackedStringArray("chips_parent")]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchors_preset = 0
 script = ExtResource("1_6f37g")
 chips_parent = NodePath("Chips")
 chip_scene = ExtResource("2_stgit")
+chip_holder_scene = ExtResource("3_u70y5")
 
 [node name="Chips" type="Control" parent="."]
 anchors_preset = 0
