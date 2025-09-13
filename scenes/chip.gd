@@ -4,7 +4,9 @@ extends Control
 @export var score := 1
 
 @export var area: Area2D
-@export var label: Label
+
+@export var _label_main: Label
+@export var _label_price: Label
 
 
 func _ready() -> void:
@@ -14,11 +16,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    label.rotation = get_global_transform().get_rotation() * -1
+    _label_main.rotation = get_global_transform().get_rotation() * -1
 
 
 func refresh_view() -> void:
-    label.text = "+%s" % [score]
+    _label_main.text = "+%s" % [score]
 
 
 func _on_area_entered(other_area: Area2D) -> void:
