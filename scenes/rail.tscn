@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="2_stgit"]
 [ext_resource type="PackedScene" uid="uid://bt7jq7m0wseur" path="res://scenes/chip_holder.tscn" id="3_u70y5"]
 
-[node name="Rail" type="Control" node_paths=PackedStringArray("chips_parent")]
+[node name="Rail" type="Control" node_paths=PackedStringArray("chip_holders_parent")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6f37g")
-chips_parent = NodePath("Chips")
+chip_holders_parent = NodePath("ChipHolders")
 chip_scene = ExtResource("2_stgit")
 chip_holder_scene = ExtResource("3_u70y5")
 
-[node name="Chips" type="Control" parent="."]
+[node name="ChipHolders" type="Control" parent="."]
 anchors_preset = 0
