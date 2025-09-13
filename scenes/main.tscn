@@ -84,6 +84,10 @@ rotate_speed = 0.05
 holder_count = 32
 
 [node name="ChipSensor" parent="Objects" instance=ExtResource("3_sugp2")]
+offset_left = 640.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 320.0
 rotation = 3.14159
 
 [node name="UI" type="Control" parent="."]
