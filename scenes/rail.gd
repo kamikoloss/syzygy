@@ -1,8 +1,8 @@
 class_name Rail
 extends Control
 
-const CIRCLE_COLOR := Color(1.0, 1.0, 1.0)
-const LINE_COLOR := Color(0.4, 0.4, 0.4)
+const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
+const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 
 @export var circle_radius := 320.0 # px
 @export var rotate_speed := 1.0 # rotates / sec
@@ -22,8 +22,10 @@ func _ready() -> void:
 
 
 func _draw():
-    draw_line(Vector2(0, circle_radius * -1), Vector2(1280, circle_radius * -1), LINE_COLOR)
-    draw_circle(Vector2.ZERO, circle_radius, CIRCLE_COLOR, false)
+    draw_line(Vector2(0, circle_radius * -1), Vector2(1280, circle_radius * -1), LINE_COLOR_SECONDARY)
+    draw_circle(Vector2.ZERO, circle_radius, LINE_COLOR_PRIMARY, false)
+    # TODO: not working
+    chips_parent.draw_polyline([Vector2(40, 0), Vector2(20, -10), Vector2(20, 10), Vector2(40, 0)], LINE_COLOR_PRIMARY)
 
 
 func set_holders() -> void:
