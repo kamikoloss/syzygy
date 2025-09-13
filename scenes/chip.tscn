@@ -6,16 +6,26 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_su0yu"]
 radius = 20.0
 
-[node name="Chip" type="Control" node_paths=PackedStringArray("area", "_label_main", "_label_price")]
+[node name="Chip" type="Control" node_paths=PackedStringArray("area", "_texture_rect_main", "_texture_rect_outline", "_label_main", "_label_price")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ojlvc")
 area = NodePath("Area2D")
+_texture_rect_main = NodePath("TextureRectMain")
+_texture_rect_outline = NodePath("TextureRectOutline")
 _label_main = NodePath("LabelMain")
 _label_price = NodePath("LabelPrice")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRectOutline" type="TextureRect" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("1_ri5qt")
+expand_mode = 1
+
+[node name="TextureRectMain" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

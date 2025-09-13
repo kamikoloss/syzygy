@@ -4,10 +4,15 @@ extends Control
 signal hovered # (on: bool)
 signal dragged # (on: bool)
 
+const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
+const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
+
 @export var score := 1
 
 @export var area: Area2D
 
+@export var _texture_rect_main: TextureRect
+@export var _texture_rect_outline: TextureRect
 @export var _label_main: Label
 @export var _label_price: Label
 
@@ -44,6 +49,12 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func refresh_view() -> void:
+    _texture_rect_outline.visible = is_dragging
+    if is_overlapping and _overrapping_holder and not _overrapping_holder.is_overlapped:
+        _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
+    else:
+        _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
+
     _label_main.text = "+%s" % [score]
 
 
@@ -86,6 +97,7 @@ func _on_entered_chip_sensor(sensor: ChipSensor) -> void:
 func _on_entered_chip_holder(holder: ChipHolder) -> void:
     is_overlapping = true
     _overrapping_holder = holder
+    refresh_view()
 
 
 func _on_exited_chip_sensor(sensor: ChipSensor) -> void:
@@ -94,12 +106,15 @@ func _on_exited_chip_sensor(sensor: ChipSensor) -> void:
 
 func _on_exited_chip_holder(holder: ChipHolder) -> void:
     is_overlapping = false
+    refresh_view()
 
 
 func _drag(on: bool) -> void:
     #print("_on_dragged(on: %s)" % [on])
     top_level = on
     is_dragging = on
+    refresh_view()
+
     if _placed_holder:
         _placed_holder.is_overlapped = false
 
