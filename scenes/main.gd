@@ -1,6 +1,7 @@
 extends Control
 
 const PLAY_STOP_DURATION = 0.2
+const SCORE_CHANGE_DURATION = 0.2
 
 @export var objects: Control
 @export var chip_storage: GridContainer
@@ -17,10 +18,17 @@ const PLAY_STOP_DURATION = 0.2
 
 var total_score := 0:
     set(v):
+        var before = total_score
         total_score = v
-        _label_total_score.text = "%s" % [total_score]
+        var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+        tween.tween_method(func(v): _label_total_score.text = str(v), before, total_score, SCORE_CHANGE_DURATION)
+var stack_scores_sum := 0:
+    set(v):
+        var before = stack_scores_sum
+        stack_scores_sum = v
+        var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+        tween.tween_method(func(v): _label_score_sum.text = str(v), before, stack_scores_sum, SCORE_CHANGE_DURATION)
 var stack_scores := [0, 0, 0, 0, 0, 0]
-var stack_scores_sum := 0
 var total_time_sec := 0.0:
     set(v):
         total_time_sec = v
@@ -28,6 +36,8 @@ var total_time_sec := 0.0:
         var sec := int(total_time_sec) % 60
         var milli_sec := int(total_time_sec * 1000) % 1000
         _label_total_time.text = "%02d:%02d.%03d" % [min, sec, milli_sec]
+
+var _label_score_sum: Label
 
 
 func _ready() -> void:
@@ -37,9 +47,11 @@ func _ready() -> void:
     _button_stop.pressed.connect(_on_button_stop_pressed)
 
     _label_version.text = ProjectSettings.get_setting("application/config/version")
+    _label_score_sum = _label_line_score_parent.get_child(Rail.RAIL_NUMBER_SUM)
 
     # Score
     total_score = 0
+    stack_scores_sum = 0
     _reset_stack_scores()
 
     # Storage
@@ -84,16 +96,16 @@ func _on_button_stop_pressed() -> void:
 
 
 func _set_stack_score(rail_number: int, score: int) -> void:
+    var before = stack_scores[rail_number]
     stack_scores[rail_number] = score
+    var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
     var label: Label = _label_line_score_parent.get_child(rail_number)
-    label.text = "%s" % [stack_scores[rail_number]]
+    tween.tween_method(func(v): label.text = str(v), before, stack_scores[rail_number], SCORE_CHANGE_DURATION)
 
     var sum := 0
     for stack_score in stack_scores:
         sum += stack_score
     stack_scores_sum = sum
-    var label_sum: Label = _label_line_score_parent.get_child(Rail.RAIL_NUMBER_SUM)
-    label_sum.text = "%s" % [stack_scores_sum]
 
 
 func _reset_stack_scores() -> void:
