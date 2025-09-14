@@ -14,14 +14,18 @@ const PLAY_STOP_DURATION = 0.2
 @export var _label_total_score: Label
 @export var _label_total_time: Label
 
+
 var total_score := 0:
     set(v):
         total_score = v
         _label_total_score.text = "%s" % [total_score]
-var total_time_sec := 0:
+var total_time_sec := 0.0:
     set(v):
         total_time_sec = v
-        _label_total_time.text = "%s" % [total_time_sec]
+        var min := int(floor(total_time_sec / 60))
+        var sec := int(total_time_sec) % 60
+        var milli_sec := int(total_time_sec * 1000) % 1000
+        _label_total_time.text = "%02d:%02d.%03d" % [min, sec, milli_sec]
 
 
 func _ready() -> void:
@@ -46,6 +50,11 @@ func _ready() -> void:
             chip.type = chip_data[0]
             chip.is_locked = true
             chip_storage.add_child(chip)
+
+
+func _process(delta: float) -> void:
+    # debug
+    total_time_sec += delta
 
 
 func _on_chip_entered_chip_sensor(chip: Chip) -> void:
