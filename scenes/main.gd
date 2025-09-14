@@ -30,7 +30,6 @@ var total_time_sec := 0.0:
 
 
 func _ready() -> void:
-    GlobalSignal.chip_entered_chip_sensor.connect(_on_chip_entered_chip_sensor)
     GlobalSignal.chip_fallen.connect(_on_chip_fallen)
     _button_play.pressed.connect(_on_button_play_pressed)
     _button_stop.pressed.connect(_on_button_stop_pressed)
@@ -66,8 +65,7 @@ func _process(delta: float) -> void:
     total_time_sec += delta
 
 
-func _on_chip_entered_chip_sensor(chip: Chip) -> void:
-    # debug
+func _on_chip_sensed(chip: Chip) -> void:
     total_score += chip.score
 
 

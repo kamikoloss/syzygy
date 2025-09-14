@@ -115,15 +115,15 @@ func _on_area_exited(other_area: Area2D) -> void:
         _on_exited_chip_holder(other_area_parent)
 
 
-func _on_entered_chip_sensor(sensor: ChipSensor) -> void:
-    GlobalSignal.chip_entered_chip_sensor.emit(self)
+func _on_entered_chip_sensor(chip_sensor: ChipSensor) -> void:
+    GlobalSignal.chip_entered_chip_sensor.emit(self, chip_sensor)
     flash()
 
 
-func _on_entered_chip_holder(holder: ChipHolder) -> void:
+func _on_entered_chip_holder(chip_holder: ChipHolder) -> void:
     is_overlapping = true
-    holder.is_overlapped = true
-    _overrapping_holder = holder
+    chip_holder.is_overlapped = true
+    _overrapping_holder = chip_holder
     refresh_view()
 
 
