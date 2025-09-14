@@ -1,7 +1,7 @@
 extends Control
 
 const PLAY_STOP_DURATION = 0.2
-
+const RAIL_NUMBER_SUM = 6
 
 @export var objects: Control
 @export var chip_storage: GridContainer
@@ -20,6 +20,8 @@ var total_score := 0:
     set(v):
         total_score = v
         _label_total_score.text = "%s" % [total_score]
+var stack_scores := [0, 0, 0, 0, 0, 0]
+var stack_scores_sum := 0
 var total_time_sec := 0.0:
     set(v):
         total_time_sec = v
@@ -30,12 +32,16 @@ var total_time_sec := 0.0:
 
 
 func _ready() -> void:
+    GlobalSignal.chip_sensed.connect(_on_chip_sensed)
     GlobalSignal.chip_fallen.connect(_on_chip_fallen)
     _button_play.pressed.connect(_on_button_play_pressed)
     _button_stop.pressed.connect(_on_button_stop_pressed)
 
     _label_version.text = ProjectSettings.get_setting("application/config/version")
+
+    # Score
     total_score = 0
+    _reset_stack_scores()
 
     # Storage
     for chip_data in ChipStorageData.DEFAULT_UNLOCKED_CHIPS:
@@ -66,7 +72,12 @@ func _process(delta: float) -> void:
 
 
 func _on_chip_sensed(chip: Chip) -> void:
-    total_score += chip.score
+    if chip.type == ChipData.Type.ACCOUNT:
+        total_score += stack_scores_sum
+        _reset_stack_scores()
+    elif 0 < chip.score:
+        var new_score = stack_scores[chip.rail_number] + chip.score
+        _set_stack_score(chip.rail_number, new_score)
 
 
 func _on_chip_fallen(chip: Chip) -> void:
@@ -82,3 +93,25 @@ func _on_button_play_pressed() -> void:
 func _on_button_stop_pressed() -> void:
     print("[Main] stop.")
     # TODO
+
+
+func _set_stack_score(rail_number: int, score: int) -> void:
+    stack_scores[rail_number] = score
+    var label: Label = _label_line_score_parent.get_child(rail_number)
+    label.text = "%s" % [stack_scores[rail_number]]
+
+    var sum := 0
+    for stack_score in stack_scores:
+        sum += stack_score
+    stack_scores_sum = sum
+    var label_sum: Label = _label_line_score_parent.get_child(RAIL_NUMBER_SUM)
+    label_sum.text = "%s" % [stack_scores_sum]
+
+
+func _reset_stack_scores() -> void:
+    var rail_number := 0
+    for stack_score in stack_scores:
+        _set_stack_score(rail_number, stack_score)
+        rail_number += 1
+
+    stack_scores_sum = 0

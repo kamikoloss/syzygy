@@ -22,6 +22,7 @@ const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 
 var price := 0
 var score := 0
+var rail_number := 0
 var is_locked := false
 var is_hovering := false
 var is_dragging := false
@@ -116,7 +117,7 @@ func _on_area_exited(other_area: Area2D) -> void:
 
 
 func _on_entered_chip_sensor(chip_sensor: ChipSensor) -> void:
-    GlobalSignal.chip_entered_chip_sensor.emit(self, chip_sensor)
+    GlobalSignal.chip_sensed.emit(self)
     flash()
 
 
@@ -140,6 +141,7 @@ func _on_exited_chip_holder(holder: ChipHolder) -> void:
 func _drag(on: bool) -> void:
     #print("_on_dragged(on: %s)" % [on])
     top_level = on
+    rail_number = -1
     is_dragging = on
     refresh_view()
 
@@ -157,9 +159,11 @@ func _drag(on: bool) -> void:
             _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
             position = Vector2.ZERO - _center_offset # NOTE: reparent() の後に書くこと
+            rail_number = _placed_holder.rail_number
             GlobalSignal.chip_placed.emit(self, _placed_holder)
         # ストレージに戻る
         else:
             print("[Chip %s] drag and fall." % [get_instance_id()])
             GlobalSignal.chip_fallen.emit(self)
+            # TODO: 枠
             queue_free()

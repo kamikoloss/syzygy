@@ -4,6 +4,7 @@ extends Control
 const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
 const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 
+@export var rail_number := 0
 @export var circle_radius := 320.0 # px
 @export var rotate_speed := 1.0 # rotates / sec
 @export var holder_count := 4
@@ -34,6 +35,7 @@ func set_holders() -> void:
         var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
         var chip_holder: ChipHolder = chip_holder_scene.instantiate()
         chip_holder.position = pos
+        chip_holder.rail_number = rail_number
         chip_holders_parent.add_child(chip_holder)
         # debug
         #var chip: Chip = chip_scene.instantiate()
