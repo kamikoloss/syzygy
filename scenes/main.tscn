@@ -5,13 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("button_play", "button_stop", "grid_container", "label_score_total")]
+[node name="Main" type="Control" node_paths=PackedStringArray("button_play", "button_stop", "objects", "chip_storage", "label_score_total")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
 button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
 button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
-grid_container = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer")
+objects = NodePath("Objects")
+chip_storage = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer")
 label_score_total = NodePath("UI/LabelScoreTotal")
 
 [node name="Objects" type="Control" parent="."]
@@ -108,11 +109,13 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="ButtonPlay" type="Button" parent="UI/MarginContainerLeft/VBoxContainer"]
+process_mode = 3
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "PLAY"
 
 [node name="ButtonStop" type="Button" parent="UI/MarginContainerLeft/VBoxContainer"]
+process_mode = 3
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "STOP"
@@ -139,7 +142,6 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="GridContainer" type="GridContainer" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 2560)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
