@@ -6,9 +6,10 @@ const PLAY_STOP_DURATION = 0.2
 @export var objects: Control
 @export var chip_storage: GridContainer
 
-@export var button_play: Button
-@export var button_stop: Button
+@export var chip_scene: PackedScene
 
+@export var _button_play: Button
+@export var _button_stop: Button
 @export var _label_version: Label
 @export var _label_score_total: Label
 
@@ -22,12 +23,25 @@ var total_score := 0:
 func _ready() -> void:
     GlobalSignal.chip_entered_chip_sensor.connect(_on_chip_entered_chip_sensor)
     GlobalSignal.chip_fallen.connect(_on_chip_fallen)
-    button_play.pressed.connect(_on_button_play_pressed)
-    button_stop.pressed.connect(_on_button_stop_pressed)
+    _button_play.pressed.connect(_on_button_play_pressed)
+    _button_stop.pressed.connect(_on_button_stop_pressed)
 
     _label_version.text = ProjectSettings.get_setting("application/config/version")
-
     total_score = 0
+
+    # Storage
+    for chip_data in ChipStorageData.DEFAULT_UNLOCKED_CHIPS:
+        for _i in chip_data[1]:
+            var chip: Chip = chip_scene.instantiate()
+            chip.type = chip_data[0]
+            chip.is_locked = false
+            chip_storage.add_child(chip)
+    for chip_data in ChipStorageData.DEFAULT_LOCKED_CHIPS:
+        for _i in chip_data[1]:
+            var chip: Chip = chip_scene.instantiate()
+            chip.type = chip_data[0]
+            chip.is_locked = true
+            chip_storage.add_child(chip)
 
 
 func _on_chip_entered_chip_sensor(chip: Chip) -> void:

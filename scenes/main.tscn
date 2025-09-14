@@ -5,14 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "button_play", "button_stop", "_label_version", "_label_score_total")]
+[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_score_total")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
 objects = NodePath("Objects")
 chip_storage = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer")
-button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
-button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
+chip_scene = ExtResource("4_jyhfs")
+_button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
+_button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
 _label_version = NodePath("UI/LabelVersion")
 _label_score_total = NodePath("UI/LabelScoreTotal")
 
@@ -150,56 +151,8 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 20
+theme_override_constants/v_separation = 30
 columns = 4
-
-[node name="Chip" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip2" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip3" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip4" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip5" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip6" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip7" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip8" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip9" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip10" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip11" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip12" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip13" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip14" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip15" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
-
-[node name="Chip16" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("4_jyhfs")]
-layout_mode = 2
 
 [node name="MarginContainerRight" type="MarginContainer" parent="UI"]
 layout_mode = 0

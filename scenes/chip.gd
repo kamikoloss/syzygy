@@ -7,8 +7,10 @@ signal dragged # (on: bool)
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 
-@export var type := ChipData.Type.NONE
-@export var score := 1
+@export var type := ChipData.Type.NONE:
+    set(v):
+        type = v
+        refresh_view()
 
 @export var area: Area2D
 
@@ -17,6 +19,9 @@ const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 @export var _label_main: Label
 @export var _label_price: Label
 
+var price := 0
+var score := 0
+var is_locked := false
 var is_dragging := false
 var is_overlapping := false
 
@@ -45,18 +50,29 @@ func _process(delta: float) -> void:
 func _gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
-            dragged.emit(event.pressed)
-            _drag(event.pressed)
+            if type != ChipData.Type.NONE:
+                dragged.emit(event.pressed)
+                _drag(event.pressed)
 
 
 func refresh_view() -> void:
+    # Type
+    var data = ChipData.DATA[type] # [ <Label>, <Color>, <Price>, <Score> ]
+    _label_main.text = data[0] # "+%s" % [score]
+    _texture_rect_main.modulate = data[1]
+    price = data[2]
+    _label_price.text = "$ %s" % [data[2]]
+    score = data[3]
+
+    # Locked
+    _label_price.visible = is_locked
+
+    # ドラッグ,　配置
     _texture_rect_outline.visible = is_dragging
     if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
         _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
     else:
         _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
-
-    _label_main.text = "+%s" % [score]
 
 
 func flash() -> void:
