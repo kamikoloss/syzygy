@@ -5,15 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("button_play", "button_stop", "objects", "chip_storage", "label_score_total")]
+[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "button_play", "button_stop", "_label_version", "_label_score_total")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
-button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
-button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
 objects = NodePath("Objects")
 chip_storage = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/GridContainer")
-label_score_total = NodePath("UI/LabelScoreTotal")
+button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
+button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
+_label_version = NodePath("UI/LabelVersion")
+_label_score_total = NodePath("UI/LabelScoreTotal")
 
 [node name="Objects" type="Control" parent="."]
 anchors_preset = 0
@@ -107,6 +108,10 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainerLeft"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="_" type="MarginContainer" parent="UI/MarginContainerLeft/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
 [node name="ButtonPlay" type="Button" parent="UI/MarginContainerLeft/VBoxContainer"]
 process_mode = 3
@@ -314,6 +319,26 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="LabelTitle" type="Label" parent="UI"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 480.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 48
+text = "SYZYGY"
+
+[node name="LabelVersion" type="Label" parent="UI"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 480.0
+offset_bottom = 100.0
+text = "ver0.0.0"
+vertical_alignment = 2
+
 [node name="LabelScoreTotal" type="Label" parent="UI"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
@@ -321,7 +346,7 @@ offset_left = 800.0
 offset_top = 640.0
 offset_right = 1260.0
 offset_bottom = 720.0
-theme_override_font_sizes/font_size = 47
+theme_override_font_sizes/font_size = 48
 text = "999,999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1

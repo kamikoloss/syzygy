@@ -2,18 +2,21 @@ extends Control
 
 const PLAY_STOP_DURATION = 0.2
 
-@export var button_play: Button
-@export var button_stop: Button
 
 @export var objects: Control
 @export var chip_storage: GridContainer
-@export var label_score_total: Label
+
+@export var button_play: Button
+@export var button_stop: Button
+
+@export var _label_version: Label
+@export var _label_score_total: Label
 
 
-var score := 0:
+var total_score := 0:
     set(v):
-        score = v
-        label_score_total.text = "%s" % [score]
+        total_score = v
+        _label_score_total.text = "%s" % [total_score]
 
 
 func _ready() -> void:
@@ -22,12 +25,14 @@ func _ready() -> void:
     button_play.pressed.connect(_on_button_play_pressed)
     button_stop.pressed.connect(_on_button_stop_pressed)
 
-    score = 0
+    _label_version.text = ProjectSettings.get_setting("application/config/version")
+
+    total_score = 0
 
 
 func _on_chip_entered_chip_sensor(chip: Chip) -> void:
     # debug
-    score += chip.score
+    total_score += chip.score
 
 
 func _on_chip_fallen(chip: Chip) -> void:
