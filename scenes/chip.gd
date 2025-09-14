@@ -7,6 +7,7 @@ signal dragged # (on: bool)
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 
+@export var type := ChipData.Type.NONE
 @export var score := 1
 
 @export var area: Area2D
