@@ -69,7 +69,7 @@ func refresh_view() -> void:
     # Locked
     _label_price.visible = is_locked
 
-    # ホバー, ドラッグ,　配置
+    # Outline
     _texture_rect_outline.visible = is_hovering or is_dragging
     if is_dragging:
         if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
@@ -151,7 +151,7 @@ func _drag(on: bool) -> void:
         pass
     else:
         # ChipHolder に配置する
-        if is_overlapping:
+        if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
             print("[Chip %s] drag and place." % [get_instance_id()])
             _placed_holder = _overrapping_holder
             _placed_holder.is_placed = true
