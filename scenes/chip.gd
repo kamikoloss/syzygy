@@ -4,6 +4,7 @@ extends Control
 signal hovered # (on: bool)
 signal dragged # (on: bool)
 
+const OUTLINE_COLOR_HOVER := Color.WHITE
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 
@@ -22,6 +23,7 @@ const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 var price := 0
 var score := 0
 var is_locked := false
+var is_hovering := false
 var is_dragging := false
 var is_overlapping := false
 
@@ -67,12 +69,15 @@ func refresh_view() -> void:
     # Locked
     _label_price.visible = is_locked
 
-    # ドラッグ,　配置
-    _texture_rect_outline.visible = is_dragging
-    if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
-        _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
+    # ホバー, ドラッグ,　配置
+    _texture_rect_outline.visible = is_hovering or is_dragging
+    if is_dragging:
+        if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
+            _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
+        else:
+            _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
     else:
-        _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
+        _texture_rect_outline.modulate = OUTLINE_COLOR_HOVER
 
 
 func flash() -> void:
@@ -83,11 +88,15 @@ func flash() -> void:
 
 
 func _on_mouse_entered() -> void:
+    is_hovering = true
     hovered.emit(true)
+    refresh_view()
 
 
 func _on_mouse_exited() -> void:
+    is_hovering = false
     hovered.emit(false)
+    refresh_view()
 
 
 func _on_area_entered(other_area: Area2D) -> void:
