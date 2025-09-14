@@ -11,13 +11,17 @@ const PLAY_STOP_DURATION = 0.2
 @export var _button_play: Button
 @export var _button_stop: Button
 @export var _label_version: Label
-@export var _label_score_total: Label
-
+@export var _label_total_score: Label
+@export var _label_total_time: Label
 
 var total_score := 0:
     set(v):
         total_score = v
-        _label_score_total.text = "%s" % [total_score]
+        _label_total_score.text = "%s" % [total_score]
+var total_time_sec := 0:
+    set(v):
+        total_time_sec = v
+        _label_total_time.text = "%s" % [total_time_sec]
 
 
 func _ready() -> void:

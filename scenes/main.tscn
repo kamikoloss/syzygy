@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_score_total")]
+[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
@@ -14,8 +14,9 @@ chip_storage = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContai
 chip_scene = ExtResource("4_jyhfs")
 _button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
 _button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
-_label_version = NodePath("UI/LabelVersion")
-_label_score_total = NodePath("UI/LabelScoreTotal")
+_label_version = NodePath("UI/Title/LabelVersion")
+_label_total_score = NodePath("UI/Score/LabelTotalScore")
+_label_total_time = NodePath("UI/Time/LabelTotalTime")
 
 [node name="Objects" type="Control" parent="."]
 anchors_preset = 0
@@ -272,34 +273,91 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LabelTitle" type="Label" parent="UI"]
+[node name="Title" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Title"]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 80.0
+
+[node name="LabelTitle" type="Label" parent="UI/Title"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 0
 offset_left = 20.0
-offset_top = 20.0
 offset_right = 480.0
-offset_bottom = 100.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 48
 text = "SYZYGY"
 
-[node name="LabelVersion" type="Label" parent="UI"]
+[node name="LabelVersion" type="Label" parent="UI/Title"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 0
 offset_left = 20.0
-offset_top = 20.0
 offset_right = 480.0
-offset_bottom = 100.0
+offset_bottom = 80.0
 text = "ver0.0.0"
 vertical_alignment = 2
 
-[node name="LabelScoreTotal" type="Label" parent="UI"]
+[node name="Time" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 780.0
+offset_top = 540.0
+offset_right = 780.0
+offset_bottom = 540.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Time"]
+offset_left = 470.0
+offset_right = 480.0
+offset_bottom = 80.0
+
+[node name="Label" type="Label" parent="UI/Time"]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 460.0
+offset_bottom = 80.0
+text = "Total Time"
+horizontal_alignment = 2
+
+[node name="LabelTotalTime" type="Label" parent="UI/Time"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-offset_left = 800.0
-offset_top = 640.0
-offset_right = 1260.0
-offset_bottom = 720.0
+offset_right = 460.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 48
+text = "00:00.000"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Score" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 780.0
+offset_top = 630.0
+offset_right = 780.0
+offset_bottom = 630.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Score"]
+offset_left = 470.0
+offset_right = 480.0
+offset_bottom = 80.0
+
+[node name="Label" type="Label" parent="UI/Score"]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 460.0
+offset_bottom = 80.0
+text = "Total Score"
+horizontal_alignment = 2
+
+[node name="LabelTotalScore" type="Label" parent="UI/Score"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_right = 460.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 48
 text = "999,999,999,999"
 horizontal_alignment = 2
-vertical_alignment = 1
+vertical_alignment = 2
