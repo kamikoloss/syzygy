@@ -42,7 +42,9 @@ func _on_chip_fallen(chip: Chip) -> void:
 
 func _on_button_play_pressed() -> void:
     print("[Main] play.")
+    # TODO
 
 
 func _on_button_stop_pressed() -> void:
     print("[Main] stop.")
+    # TODO

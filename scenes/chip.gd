@@ -51,7 +51,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func refresh_view() -> void:
     _texture_rect_outline.visible = is_dragging
-    if is_overlapping and _overrapping_holder and not _overrapping_holder.is_overlapped:
+    if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
         _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
     else:
         _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
@@ -97,6 +97,7 @@ func _on_entered_chip_sensor(sensor: ChipSensor) -> void:
 
 func _on_entered_chip_holder(holder: ChipHolder) -> void:
     is_overlapping = true
+    holder.is_overlapped = true
     _overrapping_holder = holder
     refresh_view()
 
@@ -107,6 +108,7 @@ func _on_exited_chip_sensor(sensor: ChipSensor) -> void:
 
 func _on_exited_chip_holder(holder: ChipHolder) -> void:
     is_overlapping = false
+    holder.is_overlapped = false
     refresh_view()
 
 
@@ -117,22 +119,21 @@ func _drag(on: bool) -> void:
     refresh_view()
 
     if _placed_holder:
-        _placed_holder.is_overlapped = false
+        _placed_holder.is_placed = false
 
     if on:
         print("[Chip %s] drag and..." % [get_instance_id()])
         pass
     else:
-        # ChipHolder に載る
+        # ChipHolder に配置する
         if is_overlapping:
-            print("[Chip %s] drag and ride." % [get_instance_id()])
+            print("[Chip %s] drag and place." % [get_instance_id()])
             _placed_holder = _overrapping_holder
-            _overrapping_holder.is_overlapped = true
+            _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
             position = Vector2.ZERO - _center_offset # NOTE: reparent() の後に書くこと
-            GlobalSignal.chip_ridden.emit(self, _placed_holder)
-        # 元に戻る
-        # Main 側で再生成する
+            GlobalSignal.chip_placed.emit(self, _placed_holder)
+        # ストレージに戻る
         else:
             print("[Chip %s] drag and fall." % [get_instance_id()])
             GlobalSignal.chip_fallen.emit(self)
