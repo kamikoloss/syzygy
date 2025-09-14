@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5qrvbech16c" path="res://scenes/chip_sensor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time")]
+[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time", "_label_line_speed_parent", "_label_line_score_parent")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
@@ -17,57 +17,19 @@ _button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
 _label_version = NodePath("UI/Title/LabelVersion")
 _label_total_score = NodePath("UI/Score/LabelTotalScore")
 _label_total_time = NodePath("UI/Time/LabelTotalTime")
+_label_line_speed_parent = NodePath("UI/MarginContainerRight/VBoxContainerLeft")
+_label_line_score_parent = NodePath("UI/MarginContainerRight/VBoxContainerRight")
 
 [node name="Objects" type="Control" parent="."]
 anchors_preset = 0
 
-[node name="Rail80" parent="Objects" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
+[node name="Rail320" parent="Objects" instance=ExtResource("2_0xm2m")]
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
-circle_radius = 80.0
-holder_count = 1
-
-[node name="Rail120" parent="Objects" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
-circle_radius = 120.0
-rotate_speed = 0.8
-holder_count = 2
-
-[node name="Rail160" parent="Objects" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
-circle_radius = 160.0
-rotate_speed = 0.6
-
-[node name="Rail200" parent="Objects" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
-circle_radius = 200.0
-rotate_speed = 0.4
-holder_count = 8
-
-[node name="Rail240" parent="Objects" instance=ExtResource("2_0xm2m")]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 640.0
-offset_bottom = 360.0
-circle_radius = 240.0
-rotate_speed = 0.2
-holder_count = 16
+rotate_speed = 0.05
+holder_count = 32
 
 [node name="Rail280" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
@@ -79,13 +41,53 @@ circle_radius = 280.0
 rotate_speed = 0.1
 holder_count = 24
 
-[node name="Rail320" parent="Objects" instance=ExtResource("2_0xm2m")]
+[node name="Rail240" parent="Objects" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
 offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
-rotate_speed = 0.05
-holder_count = 32
+circle_radius = 240.0
+rotate_speed = 0.2
+holder_count = 16
+
+[node name="Rail200" parent="Objects" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 200.0
+rotate_speed = 0.4
+holder_count = 8
+
+[node name="Rail160" parent="Objects" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 160.0
+rotate_speed = 0.6
+
+[node name="Rail120" parent="Objects" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 120.0
+rotate_speed = 0.8
+holder_count = 2
+
+[node name="Rail80" parent="Objects" instance=ExtResource("2_0xm2m")]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
+circle_radius = 80.0
+holder_count = 1
 
 [node name="ChipSensor" parent="Objects" instance=ExtResource("3_sugp2")]
 offset_left = 640.0
@@ -261,10 +263,6 @@ layout_mode = 2
 text = "999,999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
-
-[node name="_" type="MarginContainer" parent="UI/MarginContainerRight/VBoxContainerRight"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Title" type="Control" parent="UI"]
 anchors_preset = 0

@@ -13,7 +13,8 @@ const PLAY_STOP_DURATION = 0.2
 @export var _label_version: Label
 @export var _label_total_score: Label
 @export var _label_total_time: Label
-
+@export var _label_line_speed_parent: Control
+@export var _label_line_score_parent: Control
 
 var total_score := 0:
     set(v):
@@ -53,6 +54,14 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+    # Rail
+    var rail_index := 0
+    for node in objects.get_children():
+        if node is Rail:
+            var label: Label = _label_line_speed_parent.get_child(rail_index)
+            label.text = "x%1.2f" % [node.rotate_speed]
+            rail_index += 1
+
     # debug
     total_time_sec += delta
 
