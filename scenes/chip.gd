@@ -68,7 +68,10 @@ func refresh_view() -> void:
     score = data[3]
 
     # Locked
-    _label_price.visible = is_locked
+    if is_locked:
+        _label_price.modulate = Color.WHITE
+    else:
+        _label_price.modulate = Color.WHITE
 
     # Outline
     _texture_rect_outline.visible = is_hovering or is_dragging

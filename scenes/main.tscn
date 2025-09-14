@@ -28,7 +28,7 @@ offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
-rotate_speed = 0.05
+rotate_speed = 0.04
 holder_count = 32
 
 [node name="Rail280" parent="Objects" instance=ExtResource("2_0xm2m")]
@@ -39,7 +39,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 1
 circle_radius = 280.0
-rotate_speed = 0.1
+rotate_speed = 0.08
 holder_count = 24
 
 [node name="Rail240" parent="Objects" instance=ExtResource("2_0xm2m")]
@@ -50,7 +50,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 2
 circle_radius = 240.0
-rotate_speed = 0.2
+rotate_speed = 0.12
 holder_count = 16
 
 [node name="Rail200" parent="Objects" instance=ExtResource("2_0xm2m")]
@@ -61,7 +61,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 3
 circle_radius = 200.0
-rotate_speed = 0.4
+rotate_speed = 0.2
 holder_count = 8
 
 [node name="Rail160" parent="Objects" instance=ExtResource("2_0xm2m")]
@@ -72,7 +72,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 4
 circle_radius = 160.0
-rotate_speed = 0.6
+rotate_speed = 0.32
 
 [node name="Rail120" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
@@ -82,7 +82,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 5
 circle_radius = 120.0
-rotate_speed = 0.8
+rotate_speed = 0.52
 holder_count = 2
 
 [node name="Rail80" parent="Objects" instance=ExtResource("2_0xm2m")]
@@ -93,6 +93,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 rail_number = 6
 circle_radius = 80.0
+rotate_speed = 0.84
 holder_count = 1
 
 [node name="ChipSensor" parent="Objects" instance=ExtResource("3_sugp2")]
