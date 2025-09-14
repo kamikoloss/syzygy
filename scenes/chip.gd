@@ -27,8 +27,8 @@ var is_locked := false
 var is_hovering := false
 var is_dragging := false
 var is_overlapping := false
+var center_offset: Vector2
 
-var _center_offset: Vector2
 var _drag_start_global_position: Vector2
 var _overrapping_holder: ChipHolder
 var _placed_holder: ChipHolder
@@ -40,14 +40,14 @@ func _ready() -> void:
     area.area_entered.connect(_on_area_entered)
     area.area_exited.connect(_on_area_exited)
 
-    _center_offset = custom_minimum_size / 2.0
+    center_offset = custom_minimum_size / 2.0
     refresh_view()
 
 
 func _process(delta: float) -> void:
     _label_main.rotation = get_global_transform().get_rotation() * -1
     if is_dragging:
-        global_position = get_global_mouse_position() - _center_offset
+        global_position = get_global_mouse_position() - center_offset
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -92,12 +92,16 @@ func flash() -> void:
 
 
 func _on_mouse_entered() -> void:
+    if type == ChipData.Type.ACCOUNT:
+        return
     is_hovering = true
     hovered.emit(true)
     refresh_view()
 
 
 func _on_mouse_exited() -> void:
+    if type == ChipData.Type.ACCOUNT:
+        return
     is_hovering = false
     hovered.emit(false)
     refresh_view()
@@ -161,7 +165,7 @@ func _drag(on: bool) -> void:
             _placed_holder = _overrapping_holder
             _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
-            position = Vector2.ZERO - _center_offset # NOTE: reparent() の後に書くこと
+            position = Vector2.ZERO - center_offset # NOTE: reparent() の後に書くこと
             rail_number = _placed_holder.rail_number
             GlobalSignal.chip_placed.emit(self, _placed_holder)
         # ストレージに戻る

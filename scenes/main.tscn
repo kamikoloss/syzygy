@@ -311,12 +311,14 @@ offset_right = 780.0
 offset_bottom = 530.0
 
 [node name="ColorRect" type="ColorRect" parent="UI/Time"]
+layout_mode = 0
 offset_left = 470.0
 offset_right = 480.0
 offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="UI/Time"]
 custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
 offset_right = 460.0
 offset_bottom = 80.0
 text = "Total Time"
@@ -340,12 +342,14 @@ offset_right = 780.0
 offset_bottom = 620.0
 
 [node name="ColorRect" type="ColorRect" parent="UI/Score"]
+layout_mode = 0
 offset_left = 470.0
 offset_right = 480.0
 offset_bottom = 80.0
 
 [node name="Label" type="Label" parent="UI/Score"]
 custom_minimum_size = Vector2(0, 80)
+layout_mode = 0
 offset_right = 460.0
 offset_bottom = 80.0
 text = "Total Score"

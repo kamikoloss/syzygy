@@ -1,6 +1,7 @@
 class_name Rail
 extends Control
 
+const RAIL_NUMBER_SUM = 6
 const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
 const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 
@@ -18,7 +19,11 @@ var _tween_rotate: Tween
 
 
 func _ready() -> void:
-    set_holders()
+    if rail_number == RAIL_NUMBER_SUM:
+        _init_chips()
+    else:
+        _init_chip_holders()
+
     start_rotate()
 
 
@@ -29,7 +34,19 @@ func _draw():
     chip_holders_parent.draw_polyline([Vector2(40, 0), Vector2(20, -10), Vector2(20, 10), Vector2(40, 0)], LINE_COLOR_PRIMARY)
 
 
-func set_holders() -> void:
+func start_rotate() -> void:
+    var duration := 1.0 / rotate_speed
+    _tween_rotate = create_tween()
+    _tween_rotate.set_loops()
+    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 360.0, duration)
+    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 0.0, 0)
+
+
+func stop_rotate() -> void:
+    pass
+
+
+func _init_chip_holders() -> void:
     for i in holder_count:
         var rad := PI * 2 / holder_count * (i + 1)
         var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
@@ -37,15 +54,12 @@ func set_holders() -> void:
         chip_holder.position = pos
         chip_holder.rail_number = rail_number
         chip_holders_parent.add_child(chip_holder)
-        # debug
-        #var chip: Chip = chip_scene.instantiate()
-        #chip.position = pos - chip.custom_minimum_size / 2
-        #chip_holders_parent.add_child(chip)
 
 
-func start_rotate() -> void:
-    var duration := 1.0 / rotate_speed
-    _tween_rotate = create_tween()
-    _tween_rotate.set_loops()
-    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 360.0, duration)
-    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 0.0, 0)
+func _init_chips() -> void:
+    # Type.ACCOUNT
+    var chip: Chip = chip_scene.instantiate()
+    chip.type = ChipData.Type.ACCOUNT
+    chip.is_locked = false
+    chip_holders_parent.add_child(chip)
+    chip.position = Vector2(0, circle_radius) - chip.center_offset

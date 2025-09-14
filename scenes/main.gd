@@ -1,7 +1,6 @@
 extends Control
 
 const PLAY_STOP_DURATION = 0.2
-const RAIL_NUMBER_SUM = 6
 
 @export var objects: Control
 @export var chip_storage: GridContainer
@@ -44,18 +43,7 @@ func _ready() -> void:
     _reset_stack_scores()
 
     # Storage
-    for chip_data in ChipStorageData.DEFAULT_UNLOCKED_CHIPS:
-        for _i in chip_data[1]:
-            var chip: Chip = chip_scene.instantiate()
-            chip.type = chip_data[0]
-            chip.is_locked = false
-            chip_storage.add_child(chip)
-    for chip_data in ChipStorageData.DEFAULT_LOCKED_CHIPS:
-        for _i in chip_data[1]:
-            var chip: Chip = chip_scene.instantiate()
-            chip.type = chip_data[0]
-            chip.is_locked = true
-            chip_storage.add_child(chip)
+    _init_storage_chips()
 
 
 func _process(delta: float) -> void:
@@ -75,7 +63,7 @@ func _on_chip_sensed(chip: Chip) -> void:
     if chip.type == ChipData.Type.ACCOUNT:
         total_score += stack_scores_sum
         _reset_stack_scores()
-    elif chip.rail_number < RAIL_NUMBER_SUM and 0 < chip.score:
+    elif chip.rail_number < Rail.RAIL_NUMBER_SUM and 0 < chip.score:
         var new_score = stack_scores[chip.rail_number] + chip.score
         _set_stack_score(chip.rail_number, new_score)
 
@@ -104,14 +92,29 @@ func _set_stack_score(rail_number: int, score: int) -> void:
     for stack_score in stack_scores:
         sum += stack_score
     stack_scores_sum = sum
-    var label_sum: Label = _label_line_score_parent.get_child(RAIL_NUMBER_SUM)
+    var label_sum: Label = _label_line_score_parent.get_child(Rail.RAIL_NUMBER_SUM)
     label_sum.text = "%s" % [stack_scores_sum]
 
 
 func _reset_stack_scores() -> void:
     var rail_number := 0
     for stack_score in stack_scores:
-        _set_stack_score(rail_number, stack_score)
+        _set_stack_score(rail_number, 0)
         rail_number += 1
 
     stack_scores_sum = 0
+
+
+func _init_storage_chips() -> void:
+    for chip_data in ChipStorageData.DEFAULT_UNLOCKED_CHIPS:
+        for _i in chip_data[1]:
+            var chip: Chip = chip_scene.instantiate()
+            chip.type = chip_data[0]
+            chip.is_locked = false
+            chip_storage.add_child(chip)
+    for chip_data in ChipStorageData.DEFAULT_LOCKED_CHIPS:
+        for _i in chip_data[1]:
+            var chip: Chip = chip_scene.instantiate()
+            chip.type = chip_data[0]
+            chip.is_locked = true
+            chip_storage.add_child(chip)

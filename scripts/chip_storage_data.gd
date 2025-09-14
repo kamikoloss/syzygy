@@ -3,7 +3,7 @@ extends Node
 
 
 const DEFAULT_UNLOCKED_CHIPS := [
-    [ChipData.Type.PLUS_1, 8],
+    [ChipData.Type.PLUS_1, 4],
 ]
 
 const DEFAULT_LOCKED_CHIPS := [

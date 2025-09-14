@@ -11,7 +11,7 @@ enum Type {
 ## { <Type>: [ <Label>, <Color>, <Price>, <Score> ], ... }
 const DATA := {
     Type.NONE:      ["", Color(0.1, 0.1, 0.1), 0, 0],
-    Type.ACCOUNT:   ["★", Color(0.8, 0.8, 0.8), 0, 0],
+    Type.ACCOUNT:   ["★", Color(0.2, 0.2, 0.2), 0, 0],
     Type.PLUS_1:    ["+1", Color(0.8, 0.8, 0.8), 0, 1],
     Type.PLUS_2:    ["+2", Color(0.8, 0.8, 0.8), 10, 2],
     Type.PLUS_3:    ["+3", Color(0.8, 0.8, 0.8), 100, 3],
