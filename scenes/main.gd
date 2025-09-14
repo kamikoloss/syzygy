@@ -15,7 +15,7 @@ var score := 0:
 
 func _ready() -> void:
     GlobalSignal.chip_entered_chip_sensor.connect(_on_chip_entered_chip_sensor)
-    GlobalSignal.chip_dropped.connect(_on_chip_dropped)
+    GlobalSignal.chip_fallen.connect(_on_chip_fallen)
     score = 0
 
 
@@ -24,5 +24,7 @@ func _on_chip_entered_chip_sensor(chip: Chip) -> void:
     score += chip.score
 
 
-func _on_chip_dropped(chip: Chip) -> void:
-    grid_container.add_child(chip.duplicate())
+func _on_chip_fallen(chip: Chip) -> void:
+    # ストレージの Chip を元に戻す
+    chip_storage.add_child(chip.duplicate())
+

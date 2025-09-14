@@ -119,19 +119,20 @@ func _drag(on: bool) -> void:
         _placed_holder.is_overlapped = false
 
     if on:
+        print("[Chip %s] drag and..." % [get_instance_id()])
         pass
     else:
         # ChipHolder に載る
         if is_overlapping:
-            #print("[Chip] drag and ride!")
+            print("[Chip %s] drag and ride." % [get_instance_id()])
             _placed_holder = _overrapping_holder
             _overrapping_holder.is_overlapped = true
             reparent(_placed_holder.chips_parent)
-            position = Vector2.ZERO - _center_offset # MUST after reparent()
+            position = Vector2.ZERO - _center_offset # NOTE: reparent() の後に書くこと
             GlobalSignal.chip_ridden.emit(self, _placed_holder)
         # 元に戻る
         # Main 側で再生成する
         else:
-            #print("[Chip] drag and dropped!")
-            GlobalSignal.chip_dropped.emit(self)
+            print("[Chip %s] drag and fall." % [get_instance_id()])
+            GlobalSignal.chip_fallen.emit(self)
             queue_free()
