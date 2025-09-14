@@ -4,9 +4,8 @@ extends Node
 enum Type {
     NONE,
     ACCOUNT,
-    PLUS_1,
-    PLUS_2, PLUS_4, PLUS_8, PLUS_16,
-    PLUS_32, PLUS_64, PLUS_128, PLUS_256,
+    PLUS_1, PLUS_2, PLUS_3, PLUS_4,
+    PLUS_5, PLUS_6, PLUS_7, PLUS_8, PLUS_9,
 }
 
 ## { <Type>: [ <Label>, <Color>, <Price>, <Score> ], ... }
@@ -15,11 +14,11 @@ const DATA := {
     Type.ACCOUNT:   ["★", Color(0.8, 0.8, 0.8), 0, 0],
     Type.PLUS_1:    ["+1", Color(0.8, 0.8, 0.8), 0, 1],
     Type.PLUS_2:    ["+2", Color(0.8, 0.8, 0.8), 10, 2],
-    Type.PLUS_4:    ["+4", Color(0.8, 0.8, 0.8), 10, 4],
-    Type.PLUS_8:    ["+8", Color(0.8, 0.8, 0.8), 10, 8],
-    Type.PLUS_16:    ["+16", Color(0.8, 0.8, 0.8), 10, 16],
-    Type.PLUS_32:    ["+32", Color(0.8, 0.8, 0.8), 10, 32],
-    Type.PLUS_64:    ["+64", Color(0.8, 0.8, 0.8), 10, 64],
-    Type.PLUS_128:    ["+128", Color(0.8, 0.8, 0.8), 10, 128],
-    Type.PLUS_256:    ["+256", Color(0.8, 0.8, 0.8), 10, 256],
+    Type.PLUS_3:    ["+3", Color(0.8, 0.8, 0.8), 10, 3],
+    Type.PLUS_4:    ["+5", Color(0.8, 0.8, 0.8), 10, 5],
+    Type.PLUS_5:    ["+8", Color(0.8, 0.8, 0.8), 10, 8],
+    Type.PLUS_6:    ["+13", Color(0.8, 0.8, 0.8), 10, 13],
+    Type.PLUS_7:    ["+21", Color(0.8, 0.8, 0.8), 10, 21],
+    Type.PLUS_8:    ["+34", Color(0.8, 0.8, 0.8), 10, 34],
+    Type.PLUS_9:    ["+55", Color(0.8, 0.8, 0.8), 10, 55],
 }

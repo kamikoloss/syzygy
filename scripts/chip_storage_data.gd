@@ -8,11 +8,11 @@ const DEFAULT_UNLOCKED_CHIPS := [
 
 const DEFAULT_LOCKED_CHIPS := [
     [ChipData.Type.PLUS_2, 4],
+    [ChipData.Type.PLUS_3, 4],
     [ChipData.Type.PLUS_4, 4],
+    [ChipData.Type.PLUS_5, 4],
+    [ChipData.Type.PLUS_6, 4],
+    [ChipData.Type.PLUS_7, 4],
     [ChipData.Type.PLUS_8, 4],
-    [ChipData.Type.PLUS_16, 4],
-    [ChipData.Type.PLUS_32, 4],
-    [ChipData.Type.PLUS_64, 4],
-    [ChipData.Type.PLUS_128, 4],
-    [ChipData.Type.PLUS_256, 4],
+    [ChipData.Type.PLUS_9, 4],
 ]

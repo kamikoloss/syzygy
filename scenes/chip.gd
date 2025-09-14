@@ -63,7 +63,7 @@ func refresh_view() -> void:
     _label_main.text = data[0] # "+%s" % [score]
     _texture_rect_main.modulate = data[1]
     price = data[2]
-    _label_price.text = "$ %s" % [data[2]]
+    _label_price.text = "%s" % [data[2]]
     score = data[3]
 
     # Locked
