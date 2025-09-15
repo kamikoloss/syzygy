@@ -13,4 +13,5 @@ chip_scene = ExtResource("2_stgit")
 chip_holder_scene = ExtResource("3_u70y5")
 
 [node name="ChipHolders" type="Control" parent="."]
+z_index = 1
 anchors_preset = 0
