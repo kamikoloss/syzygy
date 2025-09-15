@@ -158,7 +158,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 30
+theme_override_constants/v_separation = 10
 columns = 4
 
 [node name="MarginContainerRight" type="MarginContainer" parent="UI"]

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_su0yu"]
 radius = 20.0
 
-[node name="Chip" type="Control" node_paths=PackedStringArray("area", "_texture_rect_main", "_texture_rect_outline", "_label_main", "_label_price")]
+[node name="Chip" type="Control" node_paths=PackedStringArray("area", "_texture_rect_main", "_texture_rect_outline", "_label_main")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
@@ -15,7 +15,6 @@ area = NodePath("Area2D")
 _texture_rect_main = NodePath("TextureRectMain")
 _texture_rect_outline = NodePath("TextureRectOutline")
 _label_main = NodePath("LabelMain")
-_label_price = NodePath("LabelPrice")
 
 [node name="TextureRectOutline" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.4)
@@ -44,21 +43,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "+99"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LabelPrice" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -20.0
-offset_top = 30.0
-offset_right = 60.0
-offset_bottom = 70.0
-pivot_offset = Vector2(40, 20)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 12
-text = "$999999"
 horizontal_alignment = 1
 vertical_alignment = 1
 

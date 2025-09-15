@@ -20,7 +20,6 @@ const FLASH_BACK_DURATION := 1.0
 @export var _texture_rect_main: TextureRect
 @export var _texture_rect_outline: TextureRect
 @export var _label_main: Label
-@export var _label_price: Label
 
 var price := 0
 var score := 0
@@ -66,14 +65,13 @@ func refresh_view() -> void:
     _label_main.text = data[0] # "+%s" % [score]
     _texture_rect_main.modulate = data[1]
     price = data[2]
-    _label_price.text = "%s" % [data[2]]
     score = data[3]
 
     # Locked
     if is_locked:
-        _label_price.modulate = Color.WHITE
+        pass
     else:
-        _label_price.modulate = Color.WHITE
+        pass
 
     # Outline
     _texture_rect_outline.visible = is_hovering or is_dragging
