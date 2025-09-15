@@ -7,6 +7,8 @@ signal dragged # (on: bool)
 const OUTLINE_COLOR_HOVER := Color.WHITE
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
+const FLASH_COLOR := Color.BLUE
+const FLASH_BACK_DURATION := 1.0
 
 @export var type := ChipData.Type.NONE:
     set(v):
@@ -87,8 +89,8 @@ func refresh_view() -> void:
 func flash() -> void:
     var tween := create_tween()
     tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-    tween.tween_property(self, "modulate", Color.RED, 0.0)
-    tween.tween_property(self, "modulate", Color.WHITE, 1.0)
+    tween.tween_property(self, "modulate", FLASH_COLOR, 0.0)
+    tween.tween_property(self, "modulate", Color.WHITE, FLASH_BACK_DURATION)
 
 
 func _on_mouse_entered() -> void:
