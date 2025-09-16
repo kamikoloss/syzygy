@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b72d7egmeg7ro" path="res://scenes/chip_storage.tscn" id="5_tbgi4"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("objects", "chip_storage", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time", "_label_line_speed_parent", "_label_line_score_parent")]
+[node name="Main" type="Control" node_paths=PackedStringArray("objects", "_chip_storages_parent", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time", "_label_line_speed_parent", "_label_line_score_parent")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
 objects = NodePath("Objects")
-chip_storage = NodePath("")
-chip_scene = ExtResource("4_jyhfs")
+_chip_storages_parent = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/ChipStorages")
+_chip_scene = ExtResource("4_jyhfs")
+_chip_storage_scene = ExtResource("5_tbgi4")
 _button_play = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonPlay")
 _button_stop = NodePath("UI/MarginContainerLeft/VBoxContainer/ButtonStop")
 _label_version = NodePath("UI/Title/LabelVersion")
@@ -156,12 +157,9 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer"]
+[node name="ChipStorages" type="VBoxContainer" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="ChipStorage" parent="UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_tbgi4")]
-layout_mode = 2
 
 [node name="MarginContainerRight" type="MarginContainer" parent="UI"]
 layout_mode = 0

@@ -1,15 +1,18 @@
 [gd_scene load_steps=2 format=3 uid="uid://b72d7egmeg7ro"]
 
-[ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="1_036yl"]
+[ext_resource type="Script" uid="uid://cxxfokgk33yr5" path="res://scenes/chip_storage.gd" id="1_u5ctp"]
 
-[node name="VBoxContainer" type="VBoxContainer"]
+[node name="ChipStorage" type="VBoxContainer" node_paths=PackedStringArray("_label_price", "_chips_parent")]
 theme_override_constants/separation = 0
+script = ExtResource("1_u5ctp")
+_label_price = NodePath("Control/LabelPrice")
+_chips_parent = NodePath("ChipsParent")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="LabelPrice" type="Label" parent="Control"]
 layout_mode = 0
 offset_right = 190.0
 offset_bottom = 40.0
@@ -29,56 +32,8 @@ scale = Vector2(1, 0.5000019)
 points = PackedVector2Array(0, 0, 40, 0)
 width = 2.0
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="ChipsParent" type="GridContainer" parent="."]
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
-
-[node name="Chip" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip2" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip3" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip4" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip5" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip6" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip7" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip8" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip9" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip10" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip11" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip12" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip13" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip14" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip15" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2
-
-[node name="Chip16" parent="GridContainer" instance=ExtResource("1_036yl")]
-layout_mode = 2

@@ -22,3 +22,26 @@ const DATA := {
     Type.PLUS_8:    ["+34", Color(0.8, 0.8, 0.8), 10, 34],
     Type.PLUS_9:    ["+55", Color(0.8, 0.8, 0.8), 10, 55],
 }
+
+## { <Price>: [ [ ChipData.Type, <Amount> ], ... ], ... }
+const STORAGE_DATA := {
+    0: [
+        [ChipData.Type.PLUS_1, 4],
+    ],
+    10: [
+        [ChipData.Type.PLUS_2, 4],
+    ],
+    100: [
+        [ChipData.Type.PLUS_3, 4],
+    ],
+    1000: [
+        [ChipData.Type.PLUS_4, 4],
+    ],
+    10000: [
+        [ChipData.Type.PLUS_5, 4],
+    ],
+    #[ChipData.Type.PLUS_6, 4],
+    #[ChipData.Type.PLUS_7, 4],
+    #[ChipData.Type.PLUS_8, 4],
+    #[ChipData.Type.PLUS_9, 4],
+}

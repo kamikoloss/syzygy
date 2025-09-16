@@ -4,9 +4,11 @@ const PLAY_STOP_DURATION = 0.2
 const SCORE_CHANGE_DURATION = 0.2
 
 @export var objects: Control
-@export var chip_storage: GridContainer
 
-@export var chip_scene: PackedScene
+@export var _chip_storages_parent: Control
+
+@export var _chip_scene: PackedScene
+@export var _chip_storage_scene: PackedScene
 
 @export var _button_play: Button
 @export var _button_stop: Button
@@ -55,8 +57,8 @@ func _ready() -> void:
     stack_scores_sum = 0
     _reset_stack_scores()
 
-    # Storage
-    _init_storage_chips()
+    # init
+    _init_chip_storages()
 
 
 func _process(delta: float) -> void:
@@ -83,7 +85,9 @@ func _on_chip_sensed(chip: Chip) -> void:
 
 func _on_chip_fallen(chip: Chip) -> void:
     # ストレージの Chip を元に戻す
-    chip_storage.add_child(chip.duplicate())
+    for chip_storage: ChipStorage in _chip_storages_parent.get_children():
+        if chip.price == chip_storage.price:
+            chip_storage.add_chip(chip.duplicate())
 
 
 func _on_button_play_pressed() -> void:
@@ -118,16 +122,14 @@ func _reset_stack_scores() -> void:
     stack_scores_sum = 0
 
 
-func _init_storage_chips() -> void:
-    for chip_data in ChipStorageData.DEFAULT_UNLOCKED_CHIPS:
-        for _i in chip_data[1]:
-            var chip: Chip = chip_scene.instantiate()
-            chip.type = chip_data[0]
-            chip.is_locked = false
-            chip_storage.add_child(chip)
-    for chip_data in ChipStorageData.DEFAULT_LOCKED_CHIPS:
-        for _i in chip_data[1]:
-            var chip: Chip = chip_scene.instantiate()
-            chip.type = chip_data[0]
-            chip.is_locked = true
-            chip_storage.add_child(chip)
+func _init_chip_storages() -> void:
+    for price in ChipData.STORAGE_DATA:
+        for type_and_amount in ChipData.STORAGE_DATA[price]:
+            var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
+            chip_storage.price = price
+            _chip_storages_parent.add_child(chip_storage)
+            for i in type_and_amount[1]:
+                var chip: Chip = _chip_scene.instantiate()
+                chip.type = type_and_amount[0]
+                chip.price = price
+                chip_storage.add_chip(chip)
