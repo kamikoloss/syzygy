@@ -30,7 +30,6 @@ var is_dragging := false
 var is_overlapping := false
 var center_offset: Vector2
 
-var _drag_start_global_position: Vector2
 var _overrapping_holder: ChipHolder
 var _placed_holder: ChipHolder
 
