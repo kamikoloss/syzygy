@@ -25,6 +25,7 @@ var total_score := 0:
         total_score = v
         var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
         tween.tween_method(func(x): _label_total_score.text = str(x), before, total_score, SCORE_CHANGE_DURATION)
+        _try_unlock_storages()
 var stack_scores_sum := 0:
     set(v):
         var before = stack_scores_sum
@@ -53,14 +54,15 @@ func _ready() -> void:
     _label_version.text = ProjectSettings.get_setting("application/config/version")
     _label_score_sum = _label_line_score_parent.get_child(Rail.RAIL_NUMBER_SUM)
 
-    # Score
-    total_score = 0
-    stack_scores_sum = 0
-    _reset_stack_scores()
-
     # init
     _init_rails()
     _init_chip_storages()
+
+    # Score
+    # MUST after _init_chip_storages()
+    total_score = 0
+    stack_scores_sum = 0
+    _reset_stack_scores()
 
 
 func _process(delta: float) -> void:
@@ -152,3 +154,12 @@ func _init_chip_storages() -> void:
                 new_chip.type = data[0]
                 new_chip.price = price
                 chip_storage.chips_parent.add_child(new_chip)
+            # MUST after chip_storage.chips_parent.add_child()
+            chip_storage.is_locked = true
+
+
+func _try_unlock_storages() -> void:
+    for node in _chip_storages_parent.get_children():
+        if node is ChipStorage:
+            if node.is_locked and node.price <= total_score:
+                node.is_locked = false
