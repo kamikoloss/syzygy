@@ -20,7 +20,7 @@ _texture_rect_flash = NodePath("TextureRectFlash")
 _label_main = NodePath("LabelMain")
 
 [node name="TextureRectOutline" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.4)
+self_modulate = Color(1, 1, 1, 0.6)
 layout_mode = 0
 offset_left = -5.0
 offset_top = -5.0

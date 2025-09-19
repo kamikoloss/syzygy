@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 
 [node name="ChipSensor" type="Control"]
+modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_mj21l")
