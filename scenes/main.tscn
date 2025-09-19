@@ -111,7 +111,7 @@ offset_bottom = 360.0
 rotation = 3.14159
 
 [node name="UI" type="Control" parent="."]
-z_index = 10
+z_index = 2
 anchors_preset = 0
 
 [node name="MarginContainerLeft" type="MarginContainer" parent="UI"]
