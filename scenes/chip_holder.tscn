@@ -24,8 +24,6 @@ expand_mode = 1
 
 [node name="Chips" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
