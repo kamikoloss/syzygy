@@ -84,10 +84,14 @@ func _on_chip_sensed(chip: Chip) -> void:
 
 
 func _on_chip_fallen(chip: Chip) -> void:
+    #print("_on_chip_fallen() type: %s, price: %s" % [chip.type, chip.price])
     # ストレージの Chip を元に戻す
     for chip_storage: ChipStorage in _chip_storages_parent.get_children():
         if chip.price == chip_storage.price:
-            chip_storage.add_chip(chip.duplicate())
+            var new_chip: Chip = _chip_scene.instantiate()
+            new_chip.type = chip.type
+            new_chip.price = chip.price
+            chip_storage.chips_parent.add_child(new_chip)
 
 
 func _on_button_play_pressed() -> void:
@@ -123,13 +127,14 @@ func _reset_stack_scores() -> void:
 
 
 func _init_chip_storages() -> void:
-    for price in Data.CHIP_STORAGE_DATA:
+    for price in Data.CHIP_STORAGE_DATA.keys():
+        #print("_init_chip_storages() price: %s" % [price])
         for type_and_amount in Data.CHIP_STORAGE_DATA[price]:
             var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
             chip_storage.price = price
             _chip_storages_parent.add_child(chip_storage)
             for i in type_and_amount[1]:
-                var chip: Chip = _chip_scene.instantiate()
-                chip.type = type_and_amount[0]
-                chip.price = price
-                chip_storage.add_chip(chip)
+                var new_chip: Chip = _chip_scene.instantiate()
+                new_chip.type = type_and_amount[0]
+                new_chip.price = price
+                chip_storage.chips_parent.add_child(new_chip)

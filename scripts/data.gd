@@ -4,15 +4,14 @@ extends Node
 enum ChipType {
     NONE,
     ACCOUNT,
-    PLUS_1, PLUS_2, PLUS_3, PLUS_4,
-    PLUS_5, PLUS_6, PLUS_7, PLUS_8, PLUS_9,
+    PLUS_1, PLUS_2, PLUS_3, PLUS_4, PLUS_5, PLUS_6, PLUS_7, PLUS_8, PLUS_9,
 }
 
-## { <Type>: [ <Label>, <Color>, <Price>, <Score> ], ... }
+## { <Type>: [ <Label>, <Color>, <Score> ], ... }
 ## ref. https://v3.tailwindcss.com/docs/customizing-colors
 const CHIP_DATA := {
-    ChipType.NONE:      ["",    Color("#374151"), 0],
-    ChipType.ACCOUNT:   ["X",   Color("#374151"), 0],
+    ChipType.NONE:      ["",    Color("#374151"), -1],
+    ChipType.ACCOUNT:   ["X",   Color("#374151"), -1],
     ChipType.PLUS_1:    ["+1",  Color("#fee2e2"), 1],
     ChipType.PLUS_2:    ["+2",  Color("#fecaca"), 2],
     ChipType.PLUS_3:    ["+3",  Color("#fca5a5"), 3],
@@ -41,8 +40,4 @@ const CHIP_STORAGE_DATA := {
     10000: [
         [ChipType.PLUS_5, 4],
     ],
-    #[Data.Type.PLUS_6, 4],
-    #[Data.Type.PLUS_7, 4],
-    #[Data.Type.PLUS_8, 4],
-    #[Data.Type.PLUS_9, 4],
 }

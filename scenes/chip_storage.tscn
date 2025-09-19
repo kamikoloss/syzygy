@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cxxfokgk33yr5" path="res://scenes/chip_storage.gd" id="1_u5ctp"]
 
-[node name="ChipStorage" type="VBoxContainer" node_paths=PackedStringArray("_label_price", "_chips_parent")]
+[node name="ChipStorage" type="VBoxContainer" node_paths=PackedStringArray("chips_parent", "_label_price")]
 theme_override_constants/separation = 0
 script = ExtResource("1_u5ctp")
+chips_parent = NodePath("ChipsParent")
 _label_price = NodePath("Control/LabelPrice")
-_chips_parent = NodePath("ChipsParent")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 40)

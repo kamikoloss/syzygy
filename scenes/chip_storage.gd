@@ -3,8 +3,9 @@ extends Control
 
 const LOCKED_COLOR := Color(0.4, 0.4, 0.4)
 
+@export var chips_parent: GridContainer
+
 @export var _label_price: Label
-@export var _chips_parent: GridContainer
 
 var price := 0:
     set(v):
@@ -17,7 +18,3 @@ var locked := false:
             modulate = LOCKED_COLOR
         else:
             modulate = Color.WHITE
-
-
-func add_chip(chip: Chip) -> void:
-    _chips_parent.add_child(chip)
