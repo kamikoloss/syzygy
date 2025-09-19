@@ -148,11 +148,10 @@ func _drag(on: bool) -> void:
 
 func _refresh_view() -> void:
     # Type
-    var data = ChipData.DATA[type] # [ <Label>, <Color>, <Price>, <Score> ]
+    var data = ChipData.DATA[type] # [ <Label>, <Color>, <Score> ]
     _label_main.text = data[0] # "+%s" % [score]
     _texture_rect_main.modulate = data[1]
-    price = data[2]
-    score = data[3]
+    score = data[2]
 
     # Outline
     _texture_rect_outline.visible = is_hovering or is_dragging

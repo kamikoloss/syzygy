@@ -11,17 +11,17 @@ enum Type {
 ## { <Type>: [ <Label>, <Color>, <Price>, <Score> ], ... }
 ## ref. https://v3.tailwindcss.com/docs/customizing-colors
 const DATA := {
-    Type.NONE:      ["",    Color("#374151"), 0, 0],
-    Type.ACCOUNT:   ["X",   Color("#374151"), 0, 0],
-    Type.PLUS_1:    ["+1",  Color("#fee2e2"), 0, 1],
-    Type.PLUS_2:    ["+2",  Color("#fecaca"), 10, 2],
-    Type.PLUS_3:    ["+3",  Color("#fca5a5"), 100, 3],
-    Type.PLUS_4:    ["+5",  Color("#f87171"), 1000, 5],
-    Type.PLUS_5:    ["+8",  Color("#ef4444"), 10000, 8],
-    Type.PLUS_6:    ["+13", Color("#dc2626"), 10, 13],
-    Type.PLUS_7:    ["+21", Color("#b91c1c"), 10, 21],
-    Type.PLUS_8:    ["+34", Color("#991b1b"), 10, 34],
-    Type.PLUS_9:    ["+55", Color("#7f1d1d"), 10, 55],
+    Type.NONE:      ["",    Color("#374151"), 0],
+    Type.ACCOUNT:   ["X",   Color("#374151"), 0],
+    Type.PLUS_1:    ["+1",  Color("#fee2e2"), 1],
+    Type.PLUS_2:    ["+2",  Color("#fecaca"), 2],
+    Type.PLUS_3:    ["+3",  Color("#fca5a5"), 3],
+    Type.PLUS_4:    ["+5",  Color("#f87171"), 5],
+    Type.PLUS_5:    ["+8",  Color("#ef4444"), 8],
+    Type.PLUS_6:    ["+13", Color("#dc2626"), 13],
+    Type.PLUS_7:    ["+21", Color("#b91c1c"), 21],
+    Type.PLUS_8:    ["+34", Color("#991b1b"), 34],
+    Type.PLUS_9:    ["+55", Color("#7f1d1d"), 55],
 }
 
 ## { <Price>: [ [ ChipData.Type, <Amount> ], ... ], ... }
