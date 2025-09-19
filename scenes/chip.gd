@@ -52,6 +52,8 @@ func _process(_delta: float) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+    if is_locked:
+        return
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
             if type != ChipData.Type.NONE:
@@ -60,7 +62,7 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _on_mouse_entered() -> void:
-    if type == ChipData.Type.ACCOUNT:
+    if is_locked:
         return
     is_hovering = true
     hovered.emit(true)
@@ -68,7 +70,7 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
-    if type == ChipData.Type.ACCOUNT:
+    if is_locked:
         return
     is_hovering = false
     hovered.emit(false)
