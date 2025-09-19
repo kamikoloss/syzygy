@@ -24,6 +24,7 @@ var is_locked := false
 var is_hovering := false
 var is_dragging := false
 var is_overlapping := false
+var is_placed := false
 var center_offset: Vector2
 
 var _overrapping_holder: ChipHolder
@@ -91,6 +92,8 @@ func _on_area_exited(other_area: Area2D) -> void:
 
 
 func _on_entered_chip_sensor(chip_sensor: ChipSensor) -> void:
+    if not is_placed:
+        return
     GlobalSignal.chip_sensed.emit(self)
     _flash()
 
@@ -117,6 +120,7 @@ func _drag(on: bool) -> void:
     top_level = on
     rail_number = -1
     is_dragging = on
+    is_placed = false
     _refresh_view()
 
     if _placed_holder:
@@ -129,6 +133,7 @@ func _drag(on: bool) -> void:
         # ChipHolder に配置する
         if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
             print("[Chip %s] drag and place." % [get_instance_id()])
+            is_placed = true
             _placed_holder = _overrapping_holder
             _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
