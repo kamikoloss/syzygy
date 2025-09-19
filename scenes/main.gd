@@ -3,10 +3,11 @@ extends Control
 const PLAY_STOP_DURATION = 0.2
 const SCORE_CHANGE_DURATION = 1.0
 
-@export var objects: Control
+@export var objects_parent: Control
 
 @export var _chip_storages_parent: Control
 
+@export var _rail_scene: PackedScene
 @export var _chip_scene: PackedScene
 @export var _chip_storage_scene: PackedScene
 
@@ -58,13 +59,14 @@ func _ready() -> void:
     _reset_stack_scores()
 
     # init
+    _init_rails()
     _init_chip_storages()
 
 
 func _process(delta: float) -> void:
     # Rail
     var rail_index := 0
-    for node in objects.get_children():
+    for node in objects_parent.get_children():
         if node is Rail:
             var label: Label = _label_line_speed_parent.get_child(rail_index)
             label.text = "x%1.2f" % [node.rotate_speed]
@@ -122,19 +124,31 @@ func _reset_stack_scores() -> void:
     for stack_score in stack_scores:
         _set_stack_score(rail_number, 0)
         rail_number += 1
-
     stack_scores_sum = 0
+
+
+func _init_rails() -> void:
+    for rail_number in Data.RAIL_DATA.keys():
+        print("_init_rails() rail_number: %s" % [rail_number])
+        var data = Data.RAIL_DATA[rail_number]
+        var new_rail: Rail = _rail_scene.instantiate()
+        new_rail.position = Vector2(640, 360)
+        new_rail.rail_number = rail_number
+        new_rail.circle_radius = data[0]
+        new_rail.rotate_speed = data[1]
+        new_rail.holder_count = data[2]
+        objects_parent.add_child(new_rail)
 
 
 func _init_chip_storages() -> void:
     for price in Data.CHIP_STORAGE_DATA.keys():
         #print("_init_chip_storages() price: %s" % [price])
-        for type_and_amount in Data.CHIP_STORAGE_DATA[price]:
+        for data in Data.CHIP_STORAGE_DATA[price]:
             var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
             chip_storage.price = price
             _chip_storages_parent.add_child(chip_storage)
-            for i in type_and_amount[1]:
+            for i in data[1]:
                 var new_chip: Chip = _chip_scene.instantiate()
-                new_chip.type = type_and_amount[0]
+                new_chip.type = data[0]
                 new_chip.price = price
                 chip_storage.chips_parent.add_child(new_chip)

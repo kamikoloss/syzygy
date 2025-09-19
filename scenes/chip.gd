@@ -143,7 +143,7 @@ func _drag(on: bool) -> void:
 
 func _refresh_view() -> void:
     # Type
-    var data = Data.CHIP_DATA[type] # [ <Label>, <Color>, <Score> ]
+    var data = Data.CHIP_DATA[type]
     _label_main.text = data[0] # "+%s" % [score]
     _texture_rect_main.modulate = data[1]
     score = data[2]

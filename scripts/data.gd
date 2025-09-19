@@ -7,7 +7,7 @@ enum ChipType {
     PLUS_1, PLUS_2, PLUS_3, PLUS_4, PLUS_5, PLUS_6, PLUS_7, PLUS_8, PLUS_9,
 }
 
-## { <Type>: [ <Label>, <Color>, <Score> ], ... }
+## { ChipType: [ <Label>, <Color>, <score> ], ... }
 ## ref. https://v3.tailwindcss.com/docs/customizing-colors
 const CHIP_DATA := {
     ChipType.NONE:      ["",    Color("#374151"), -1],
@@ -23,7 +23,7 @@ const CHIP_DATA := {
     ChipType.PLUS_9:    ["+55", Color("#7f1d1d"), 55],
 }
 
-## { <Price>: [ [ Data.ChipType, <Amount> ], ... ], ... }
+## { <price>: [ [ ChipType, <Amount> ], ... ], ... }
 const CHIP_STORAGE_DATA := {
     0: [
         [ChipType.PLUS_1, 4],
@@ -40,4 +40,15 @@ const CHIP_STORAGE_DATA := {
     10000: [
         [ChipType.PLUS_5, 4],
     ],
+}
+
+## { <rail_number>: [ <circle_radius>, <rotate_speed>, <holder_count> ], ... }
+const RAIL_DATA := {
+    0: [320.0, 0.02, 32],
+    1: [280.0, 0.04, 24],
+    2: [240.0, 0.06, 16],
+    3: [200.0, 0.10, 8],
+    4: [160.0, 0.16, 4],
+    5: [120.0, 0.26, 2],
+    6: [80.0, 0.42, 1],
 }

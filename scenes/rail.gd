@@ -6,15 +6,15 @@ const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
 const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 const LINE_COLOR_STACK := Color(0.2, 0.2, 0.2, 1.0)
 
-@export var rail_number := 0
-@export var circle_radius := 320.0 # px
-@export var rotate_speed := 1.0 # rotates / sec
-@export var holder_count := 4
-
 @export var chip_holders_parent: Control
 
 @export var chip_scene: PackedScene
 @export var chip_holder_scene: PackedScene
+
+var rail_number := 0
+var circle_radius := 320.0 # px
+var rotate_speed := 1.0 # rotates / sec
+var holder_count := 4
 
 var _tween_rotate: Tween
 
