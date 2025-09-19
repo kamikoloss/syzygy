@@ -58,7 +58,7 @@ func _init_chip_holders() -> void:
 func _init_chips() -> void:
     # Type.ACCOUNT
     var chip: Chip = chip_scene.instantiate()
-    chip.type = ChipData.Type.ACCOUNT
+    chip.type = Data.ChipType.ACCOUNT
     chip.is_locked = true
     chip_holders_parent.add_child(chip)
     chip.position = Vector2(0, circle_radius) - chip.center_offset

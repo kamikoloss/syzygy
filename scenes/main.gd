@@ -1,7 +1,7 @@
 extends Control
 
 const PLAY_STOP_DURATION = 0.2
-const SCORE_CHANGE_DURATION = 0.2
+const SCORE_CHANGE_DURATION = 1.0
 
 @export var objects: Control
 
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 
 
 func _on_chip_sensed(chip: Chip) -> void:
-    if chip.type == ChipData.Type.ACCOUNT:
+    if chip.type == Data.ChipType.ACCOUNT:
         total_score += stack_scores_sum
         _reset_stack_scores()
     elif chip.rail_number < Rail.RAIL_NUMBER_SUM and 0 < chip.score:
@@ -123,8 +123,8 @@ func _reset_stack_scores() -> void:
 
 
 func _init_chip_storages() -> void:
-    for price in ChipData.STORAGE_DATA:
-        for type_and_amount in ChipData.STORAGE_DATA[price]:
+    for price in Data.CHIP_STORAGE_DATA:
+        for type_and_amount in Data.CHIP_STORAGE_DATA[price]:
             var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
             chip_storage.price = price
             _chip_storages_parent.add_child(chip_storage)

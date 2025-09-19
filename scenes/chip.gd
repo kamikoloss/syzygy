@@ -5,7 +5,7 @@ const OUTLINE_COLOR_HOVER := Color.WHITE
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 
-@export var type := ChipData.Type.NONE:
+@export var type := Data.ChipType.NONE:
     set(v):
         type = v
         _refresh_view()
@@ -53,7 +53,7 @@ func _gui_input(event: InputEvent) -> void:
         return
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
-            if type != ChipData.Type.NONE:
+            if type != Data.ChipType.NONE:
                 _drag(event.pressed)
 
 
@@ -142,7 +142,7 @@ func _drag(on: bool) -> void:
 
 func _refresh_view() -> void:
     # Type
-    var data = ChipData.DATA[type] # [ <Label>, <Color>, <Score> ]
+    var data = Data.CHIP_DATA[type] # [ <Label>, <Color>, <Score> ]
     _label_main.text = data[0] # "+%s" % [score]
     _texture_rect_main.modulate = data[1]
     score = data[2]

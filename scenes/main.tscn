@@ -31,6 +31,8 @@ offset_left = 640.0
 offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
+rail_number = null
+circle_radius = null
 rotate_speed = 0.02
 holder_count = 32
 
@@ -76,6 +78,7 @@ offset_bottom = 360.0
 rail_number = 4
 circle_radius = 160.0
 rotate_speed = 0.16
+holder_count = null
 
 [node name="Rail120" parent="Objects" instance=ExtResource("2_0xm2m")]
 layout_mode = 0
@@ -164,6 +167,7 @@ theme_override_constants/separation = 10
 [node name="MarginContainerRight" type="MarginContainer" parent="UI"]
 layout_mode = 0
 offset_left = 1000.0
+offset_top = 20.0
 offset_right = 1280.0
 offset_bottom = 510.0
 size_flags_horizontal = 3
