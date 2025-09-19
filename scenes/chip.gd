@@ -1,9 +1,6 @@
 class_name Chip
 extends Control
 
-signal hovered # (on: bool)
-signal dragged # (on: bool)
-
 const OUTLINE_COLOR_HOVER := Color.WHITE
 const OUTLINE_COLOR_CAN_RIDE := Color.GREEN
 const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
@@ -57,7 +54,6 @@ func _gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
             if type != ChipData.Type.NONE:
-                dragged.emit(event.pressed)
                 _drag(event.pressed)
 
 
@@ -65,7 +61,6 @@ func _on_mouse_entered() -> void:
     if is_locked:
         return
     is_hovering = true
-    hovered.emit(true)
     _refresh_view()
 
 
@@ -73,7 +68,6 @@ func _on_mouse_exited() -> void:
     if is_locked:
         return
     is_hovering = false
-    hovered.emit(false)
     _refresh_view()
 
 
