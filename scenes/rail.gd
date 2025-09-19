@@ -53,6 +53,7 @@ func _init_chip_holders() -> void:
         chip_holder.position = pos
         chip_holder.rail_number = rail_number
         chip_holders_parent.add_child(chip_holder)
+        #print("_init_chip_holders() %s/%s -> %s" % [i, holder_count, pos])
 
 
 func _init_chips() -> void:
@@ -63,4 +64,6 @@ func _init_chips() -> void:
     chip.is_placed = true
     chip_holders_parent.add_child(chip)
     # MUST after add_child()
-    chip.position = Vector2(0, circle_radius) - chip.center_offset
+    var rad := PI * 2 / holder_count
+    var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
+    chip.position = pos - chip.center_offset
