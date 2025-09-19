@@ -78,7 +78,7 @@ func _on_chip_sensed(chip: Chip) -> void:
     if chip.type == Data.ChipType.ACCOUNT:
         total_score += stack_scores_sum
         _reset_stack_scores()
-    elif chip.rail_number < Rail.RAIL_NUMBER_SUM and 0 < chip.score:
+    elif chip.rail_number != Rail.RAIL_NUMBER_SUM and 0 < chip.score:
         var new_score = stack_scores[chip.rail_number] + chip.score
         _set_stack_score(chip.rail_number, new_score)
 

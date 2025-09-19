@@ -17,9 +17,9 @@ const OUTLINE_COLOR_CAN_NOT_RIDE := Color.RED
 @export var _texture_rect_flash: TextureRect
 @export var _label_main: Label
 
-var price := 0
-var score := 0
-var rail_number := 0
+var price := -1
+var score := -1
+var rail_number := -1
 var is_locked := false
 var is_hovering := false
 var is_dragging := false
