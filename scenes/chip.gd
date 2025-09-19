@@ -38,6 +38,8 @@ func _ready() -> void:
 
     center_offset = custom_minimum_size / 2.0
     _refresh_view()
+    if type == Data.ChipType.CLEAR:
+        _rainbow()
 
     _texture_rect_flash.self_modulate = Color.TRANSPARENT
     #print("[Chip %s] ready. (type: %s, price: %s)" % [get_instance_id(), type, price])
@@ -145,7 +147,8 @@ func _refresh_view() -> void:
     # Type
     var data = Data.CHIP_DATA[type]
     _label_main.text = data[0] # "+%s" % [score]
-    _texture_rect_main.modulate = data[1]
+    if type != Data.ChipType.CLEAR:
+        _texture_rect_main.self_modulate = data[1]
     score = data[2]
 
     # Outline
@@ -165,3 +168,9 @@ func _flash() -> void:
     tween.tween_property(_texture_rect_flash, "self_modulate", Color.WHITE, 0.0)
     tween.tween_interval(0.1)
     tween.tween_property(_texture_rect_flash, "self_modulate", Color.TRANSPARENT, 1.0)
+
+
+func _rainbow() -> void:
+    var tween := create_tween()
+    tween.set_loops()
+    tween.tween_method(func(v): _texture_rect_main.self_modulate = Color.from_hsv(v, 1.0, 1.0), 0.0, 1.0, 2.0)
