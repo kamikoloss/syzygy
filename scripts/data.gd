@@ -4,6 +4,7 @@ extends Node
 enum ChipType {
     NONE,
     ACCOUNT,
+    CLEAR,
     PLUS_1, PLUS_2, PLUS_3, PLUS_4, PLUS_5, PLUS_6, PLUS_7, PLUS_8, PLUS_9,
 }
 
@@ -12,6 +13,7 @@ enum ChipType {
 const CHIP_DATA := {
     ChipType.NONE:      ["",    Color("#374151"), -1],
     ChipType.ACCOUNT:   ["X",   Color("#374151"), -1],
+    ChipType.CLEAR:     ["!!!", Color("#ffffff"), -1], # Rainbow
     ChipType.PLUS_1:    ["+1",  Color("#fee2e2"), 1],
     ChipType.PLUS_2:    ["+2",  Color("#fecaca"), 2],
     ChipType.PLUS_3:    ["+3",  Color("#fca5a5"), 3],
@@ -34,11 +36,20 @@ const CHIP_STORAGE_DATA := {
     100: [
         [ChipType.PLUS_3, 4],
     ],
-    1000: [
+    1_000: [
         [ChipType.PLUS_4, 4],
     ],
-    10000: [
+    10_000: [
         [ChipType.PLUS_5, 4],
+    ],
+    100_000: [
+        [ChipType.PLUS_6, 4],
+    ],
+    1_000_000: [
+        [ChipType.PLUS_7, 4],
+    ],
+    999_999_999: [
+        [ChipType.CLEAR, 1],
     ],
 }
 
