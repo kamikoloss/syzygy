@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cy6nox6vdm08r" path="res://scenes/rail_chip_holders.gd" id="4_u70y5"]
 
 [node name="Rail" type="Control" node_paths=PackedStringArray("chip_holders_parent")]
-z_index = 1
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6f37g")

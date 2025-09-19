@@ -7,7 +7,8 @@
 radius = 20.0
 
 [node name="Chip" type="Control" node_paths=PackedStringArray("_area", "_texture_rect_main", "_texture_rect_outline", "_texture_rect_flash", "_label_main")]
-z_index = 2
+z_index = 10
+z_as_relative = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
