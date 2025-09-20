@@ -85,35 +85,35 @@ const CHIP_STORAGE_DATA := {
         [ChipType.TIME_3, 4],
         [ChipType.SPEED_3, 4],
     ],
-    1_000: [
+    500: [
         [ChipType.ADD_4, 4],
         [ChipType.TIME_4, 4],
         [ChipType.SPEED_4, 4],
         [ChipType.TIME_S_1, 2],
         [ChipType.SPEED_S_1, 2],
     ],
-    10_000: [
+    1_000: [
         [ChipType.ADD_5, 4],
         [ChipType.TIME_5, 4],
         [ChipType.SPEED_5, 4],
         [ChipType.TIME_S_2, 2],
         [ChipType.SPEED_S_2, 2],
     ],
-    100_000: [
+    5_000: [
         [ChipType.ADD_6, 4],
         [ChipType.TIME_6, 4],
         [ChipType.SPEED_6, 4],
         [ChipType.TIME_S_3, 2],
         [ChipType.SPEED_S_3, 2],
     ],
-    1_000_000: [
+    10_000: [
         [ChipType.ADD_7, 4],
         [ChipType.TIME_7, 4],
         [ChipType.SPEED_7, 4],
         [ChipType.TIME_S_4, 2],
         [ChipType.SPEED_S_4, 2],
     ],
-    999_999_999: [
+    50_000: [
         [ChipType.CLEAR, 1],
     ],
 }
