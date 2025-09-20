@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b72d7egmeg7ro" path="res://scenes/chip_storage.tscn" id="5_tbgi4"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("objects_parent", "_chip_storages_parent", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time", "_label_line_speed_parent", "_label_line_score_parent")]
+[node name="Main" type="Control" node_paths=PackedStringArray("_rails_parent", "_chip_storages_parent", "_button_play", "_button_stop", "_label_version", "_label_total_score", "_label_total_time", "_label_line_speed_parent", "_label_line_score_parent")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ig7tw")
-objects_parent = NodePath("Objects")
+_rails_parent = NodePath("Objects/RailsParent")
 _chip_storages_parent = NodePath("UI/MarginContainerLeft/VBoxContainer/Panel/ScrollContainer/MarginContainer/ChipStorages")
 _rail_scene = ExtResource("2_0xm2m")
 _chip_scene = ExtResource("4_jyhfs")
@@ -33,6 +33,11 @@ offset_top = 360.0
 offset_right = 640.0
 offset_bottom = 360.0
 rotation = 3.14159
+
+[node name="RailsParent" type="Control" parent="Objects"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="UI" type="Control" parent="."]
 anchors_preset = 0

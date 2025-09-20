@@ -2,6 +2,7 @@ class_name Rail
 extends Control
 
 const RAIL_NUMBER_SUM = 6
+const START_STOP_DURATION = 1.0
 const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
 const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 const LINE_COLOR_STACK := Color(0.2, 0.2, 0.2, 1.0)
@@ -13,10 +14,9 @@ const LINE_COLOR_STACK := Color(0.2, 0.2, 0.2, 1.0)
 
 var rail_number := 0
 var circle_radius := 320.0 # px
+var rotate_speed_default := 1.0 # rotates / sec
 var rotate_speed := 1.0 # rotates / sec
 var holder_count := 4
-
-var _tween_rotate: Tween
 
 
 func _ready() -> void:
@@ -25,7 +25,11 @@ func _ready() -> void:
     else:
         _init_chip_holders()
 
-    start_rotate()
+
+func _process(delta: float) -> void:
+    chip_holders_parent.rotation_degrees += 360.0 * rotate_speed * delta
+    if 360.0 < chip_holders_parent.rotation_degrees:
+        chip_holders_parent.rotation_degrees -= 360.0
 
 
 func _draw():
@@ -34,15 +38,13 @@ func _draw():
 
 
 func start_rotate() -> void:
-    var duration := 1.0 / rotate_speed
-    _tween_rotate = create_tween()
-    _tween_rotate.set_loops()
-    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 360.0, duration)
-    _tween_rotate.tween_property(chip_holders_parent, "rotation_degrees", 0.0, 0)
+    var tween := create_tween()
+    tween.tween_method(func(v): rotate_speed = v, 0.0, rotate_speed_default, START_STOP_DURATION)
 
 
 func stop_rotate() -> void:
-    pass
+    var tween := create_tween()
+    tween.tween_method(func(v): rotate_speed = v, rotate_speed_default, 0.0, START_STOP_DURATION)
 
 
 func _init_chip_holders() -> void:

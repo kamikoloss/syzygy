@@ -3,8 +3,7 @@ extends Control
 const PLAY_STOP_DURATION = 0.2
 const SCORE_CHANGE_DURATION = 1.0
 
-@export var objects_parent: Control
-
+@export var _rails_parent: Control
 @export var _chip_storages_parent: Control
 
 @export var _rail_scene: PackedScene
@@ -68,7 +67,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     # Rail
     var rail_index := 0
-    for node in objects_parent.get_children():
+    for node in _rails_parent.get_children():
         if node is Rail:
             var label: Label = _label_line_speed_parent.get_child(rail_index)
             label.text = "x%1.2f" % [node.rotate_speed]
@@ -86,9 +85,16 @@ func _on_chip_sensed(chip: Chip) -> void:
     elif chip.type in Data.CHIP_TYPES_ADD:
         var new_score = stack_scores[chip.rail_number] + chip.score
         _set_stack_score(chip.rail_number, new_score)
+    elif chip.type in Data.CHIP_TYPES_SPEED:
+        pass
+    elif chip.type in Data.CHIP_TYPES_SPEED_S:
+        pass
     elif chip.type in Data.CHIP_TYPES_TIME:
         var new_score = stack_scores[chip.rail_number] * chip.score
         _set_stack_score(chip.rail_number, new_score)
+    elif chip.type in Data.CHIP_TYPES_TIME_S:
+        stack_scores_sum *= chip.score
+        pass
 
 
 func _on_chip_fallen(chip: Chip) -> void:
@@ -104,12 +110,16 @@ func _on_chip_fallen(chip: Chip) -> void:
 
 func _on_button_play_pressed() -> void:
     print("[Main] play.")
-    # TODO
+    for node in _rails_parent.get_children():
+        if node is Rail:
+            node.start_rotate()
 
 
 func _on_button_stop_pressed() -> void:
     print("[Main] stop.")
-    # TODO
+    for node in _rails_parent.get_children():
+        if node is Rail:
+            node.stop_rotate()
 
 
 func _set_stack_score(rail_number: int, score: int) -> void:
@@ -141,9 +151,10 @@ func _init_rails() -> void:
         new_rail.position = Vector2(640, 360)
         new_rail.rail_number = rail_number
         new_rail.circle_radius = data[0]
-        new_rail.rotate_speed = data[1]
+        new_rail.rotate_speed_default = data[1]
+        new_rail.rotate_speed = 0.0
         new_rail.holder_count = data[2]
-        objects_parent.add_child(new_rail)
+        _rails_parent.add_child(new_rail)
 
 
 func _init_chip_storages() -> void:
