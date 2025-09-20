@@ -10,7 +10,7 @@ const LOCKED_COLOR := Color(0.4, 0.4, 0.4)
 var price := 0:
     set(v):
         price = v
-        _label_price.text = str(price)
+        _label_price.text = Util.format_number_with_commas(price)
 var is_locked := false:
     set(v):
         is_locked = v

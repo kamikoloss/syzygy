@@ -24,14 +24,14 @@ var total_score := 0:
         var before = total_score
         total_score = v
         var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-        tween.tween_method(func(x): _label_total_score.text = str(x), before, total_score, SCORE_CHANGE_DURATION)
+        tween.tween_method(func(x): _label_total_score.text = Util.format_number_with_commas(x), before, total_score, SCORE_CHANGE_DURATION)
         _try_unlock_storages()
 var stack_scores_sum := 0:
     set(v):
         var before = stack_scores_sum
         stack_scores_sum = v
         var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-        tween.tween_method(func(x): _label_score_sum.text = str(x), before, stack_scores_sum, SCORE_CHANGE_DURATION)
+        tween.tween_method(func(x): _label_score_sum.text = Util.format_number_with_commas(x), before, stack_scores_sum, SCORE_CHANGE_DURATION)
 var stack_scores := [0, 0, 0, 0, 0, 0]
 var total_time_sec := 0.0:
     set(v):
@@ -113,7 +113,7 @@ func _set_stack_score(rail_number: int, score: int) -> void:
     stack_scores[rail_number] = score
     var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
     var label: Label = _label_line_score_parent.get_child(rail_number)
-    tween.tween_method(func(v): label.text = str(v), before, stack_scores[rail_number], SCORE_CHANGE_DURATION)
+    tween.tween_method(func(v): label.text = Util.format_number_with_commas(v), before, stack_scores[rail_number], SCORE_CHANGE_DURATION)
 
     var sum := 0
     for stack_score in stack_scores:

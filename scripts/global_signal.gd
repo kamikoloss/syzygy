@@ -1,4 +1,4 @@
-# GlobalSignal
+# class_name GlobalSignal
 extends Node
 
 signal chip_sensed(chip: Chip)

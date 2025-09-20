@@ -153,6 +153,7 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -160,6 +161,7 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -167,6 +169,7 @@ vertical_alignment = 1
 [node name="Label3" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -174,6 +177,7 @@ vertical_alignment = 1
 [node name="Label4" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -181,6 +185,7 @@ vertical_alignment = 1
 [node name="Label5" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -188,6 +193,7 @@ vertical_alignment = 1
 [node name="Label6" type="Label" parent="UI/MarginContainerRight/VBoxContainerRight"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "999,999,999"
 horizontal_alignment = 2
 vertical_alignment = 1
