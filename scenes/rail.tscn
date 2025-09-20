@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfmcx4p165aea"]
+[gd_scene load_steps=4 format=3 uid="uid://dfmcx4p165aea"]
 
 [ext_resource type="Script" uid="uid://bh1363dojikb4" path="res://scenes/rail.gd" id="1_6f37g"]
 [ext_resource type="PackedScene" uid="uid://b185sasx51q0n" path="res://scenes/chip.tscn" id="2_stgit"]
 [ext_resource type="PackedScene" uid="uid://bt7jq7m0wseur" path="res://scenes/chip_holder.tscn" id="3_u70y5"]
-[ext_resource type="Script" uid="uid://cy6nox6vdm08r" path="res://scenes/rail_chip_holders.gd" id="4_u70y5"]
 
 [node name="Rail" type="Control" node_paths=PackedStringArray("chip_holders_parent")]
 layout_mode = 3
@@ -15,4 +14,8 @@ chip_holder_scene = ExtResource("3_u70y5")
 
 [node name="ChipHolders" type="Control" parent="."]
 anchors_preset = 0
-script = ExtResource("4_u70y5")
+
+[node name="Line2D" type="Line2D" parent="ChipHolders"]
+points = PackedVector2Array(20, -10, 20, 10, 40, 0)
+closed = true
+width = 1.0
