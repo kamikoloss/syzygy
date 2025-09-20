@@ -41,6 +41,8 @@ var total_time_sec := 0.0:
             int(total_time_sec * 1000) % 1000,
         ]
 
+var _is_game_started := false
+var _is_game_cleard := false
 var _label_score_sum: Label
 
 
@@ -62,10 +64,15 @@ func _ready() -> void:
     total_score = 0
     stack_scores_sum = 0
     _reset_stack_scores()
+    total_time_sec = 0.0
 
 
 func _process(delta: float) -> void:
-    # Rail
+    # Main UI
+    if _is_game_started and not _is_game_cleard:
+        total_time_sec += delta
+
+    # Rail UI
     var rail_index := 0
     for node in _rails_parent.get_children():
         if node is Rail:
@@ -73,15 +80,17 @@ func _process(delta: float) -> void:
             label.text = "x%1.2f" % [node.rotate_speed]
             rail_index += 1
 
-    # debug
-    total_time_sec += delta
-
 
 func _on_chip_sensed(chip: Chip) -> void:
+    if not _is_game_started:
+        return
+
     if chip.type == Data.ChipType.ACCOUNT:
         print("[Main] _on_chip_sensed(ACCOUNT) stack_scores: %s" % [stack_scores])
         total_score += stack_scores_sum
         _reset_stack_scores()
+    elif chip.type == Data.ChipType.CLEAR:
+        _end_game()
     elif chip.type in Data.CHIP_TYPES_ADD:
         var new_score = stack_scores[chip.rail_number] + chip.score
         _set_stack_score(chip.rail_number, new_score)
@@ -113,6 +122,8 @@ func _on_button_play_pressed() -> void:
     for node in _rails_parent.get_children():
         if node is Rail:
             node.start_rotate()
+    if not _is_game_started:
+        _is_game_started = true
 
 
 func _on_button_stop_pressed() -> void:
@@ -178,3 +189,7 @@ func _try_unlock_storages() -> void:
         if node is ChipStorage:
             if node.is_locked and node.price <= total_score:
                 node.is_locked = false
+
+
+func _end_game() -> void:
+    _is_game_cleard = true
