@@ -95,15 +95,16 @@ func _on_chip_sensed(chip: Chip) -> void:
         var new_score = stack_scores[chip.rail_number] + chip.score
         _set_stack_score(chip.rail_number, new_score)
     elif chip.type in Data.CHIP_TYPES_SPEED:
-        pass
+        var rail: Rail = _rails_parent.get_child(chip.rail_number)
+        rail.change_speed_rotate(chip.score)
     elif chip.type in Data.CHIP_TYPES_SPEED_S:
-        pass
+        var rail: Rail = _rails_parent.get_child(Rail.RAIL_NUMBER_SUM)
+        rail.change_speed_rotate(chip.score)
     elif chip.type in Data.CHIP_TYPES_TIME:
         var new_score = stack_scores[chip.rail_number] * chip.score
         _set_stack_score(chip.rail_number, new_score)
     elif chip.type in Data.CHIP_TYPES_TIME_S:
         stack_scores_sum *= chip.score
-        pass
 
 
 func _on_chip_fallen(chip: Chip) -> void:

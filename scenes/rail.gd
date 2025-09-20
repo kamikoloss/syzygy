@@ -3,6 +3,7 @@ extends Control
 
 const RAIL_NUMBER_SUM = 6
 const START_STOP_DURATION = 1.0
+const CHANGE_SPEED_DURATION = 1.0
 const LINE_COLOR_PRIMARY := Color(1.0, 1.0, 1.0)
 const LINE_COLOR_SECONDARY := Color(0.4, 0.4, 0.4)
 const LINE_COLOR_STACK := Color(0.2, 0.2, 0.2, 1.0)
@@ -45,6 +46,11 @@ func start_rotate() -> void:
 func stop_rotate() -> void:
     var tween := create_tween()
     tween.tween_method(func(v): rotate_speed = v, rotate_speed_default, 0.0, START_STOP_DURATION)
+
+
+func change_speed_rotate(ratio: float) -> void:
+    var tween := create_tween()
+    tween.tween_method(func(v): rotate_speed = v, rotate_speed_default * ratio, rotate_speed_default, CHANGE_SPEED_DURATION)
 
 
 func _init_chip_holders() -> void:
