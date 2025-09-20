@@ -71,7 +71,7 @@ func _init_chips() -> void:
     chip.is_locked = true
     chip.is_placed = true
     chip_holders_parent.add_child(chip)
-    # MUST after add_child()
+    # NOTE: MUST after add_child()
     var rad := PI * 2 / holder_count
     var pos := Vector2(cos(rad) * circle_radius, sin(rad) * circle_radius)
     chip.position = pos - chip.center_offset

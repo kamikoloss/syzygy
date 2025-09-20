@@ -137,7 +137,7 @@ func _drag(on: bool) -> void:
             _placed_holder = _overrapping_holder
             _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
-            position = Vector2.ZERO - center_offset # NOTE: reparent() の後に書くこと
+            position = Vector2.ZERO - center_offset # NOTE: MUST after reparent()
             rail_number = _placed_holder.rail_number
             GlobalSignal.chip_placed.emit(self, _placed_holder)
         # ストレージに戻る

@@ -60,7 +60,7 @@ func _ready() -> void:
     _init_chip_storages()
 
     # Score
-    # MUST after _init_chip_storages()
+    # NOTE: MUST after _init_chip_storages()
     total_score = 0
     stack_scores_sum = 0
     _reset_stack_scores()
@@ -181,7 +181,7 @@ func _init_chip_storages() -> void:
                 new_chip.price = price
                 chip_storage.chips_parent.add_child(new_chip)
         _chip_storages_parent.add_child(chip_storage)
-        # MUST after chip_storage.chips_parent.add_child()
+        # NOTE: MUST after chip_storage.chips_parent.add_child()
         chip_storage.is_locked = true
 
 
