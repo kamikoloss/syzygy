@@ -145,17 +145,17 @@ func _init_rails() -> void:
 func _init_chip_storages() -> void:
     for price in Data.CHIP_STORAGE_DATA.keys():
         #print("_init_chip_storages() price: %s" % [price])
+        var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
+        chip_storage.price = price
         for data in Data.CHIP_STORAGE_DATA[price]:
-            var chip_storage: ChipStorage = _chip_storage_scene.instantiate()
-            chip_storage.price = price
-            _chip_storages_parent.add_child(chip_storage)
             for i in data[1]:
                 var new_chip: Chip = _chip_scene.instantiate()
                 new_chip.type = data[0]
                 new_chip.price = price
                 chip_storage.chips_parent.add_child(new_chip)
-            # MUST after chip_storage.chips_parent.add_child()
-            chip_storage.is_locked = true
+        _chip_storages_parent.add_child(chip_storage)
+        # MUST after chip_storage.chips_parent.add_child()
+        chip_storage.is_locked = true
 
 
 func _try_unlock_storages() -> void:
