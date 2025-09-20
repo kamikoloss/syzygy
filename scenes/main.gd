@@ -99,7 +99,7 @@ func _on_chip_sensed(chip: Chip) -> void:
         rail.change_speed_rotate(chip.score)
     elif chip.type in Data.CHIP_TYPES_SPEED_S:
         var rail: Rail = _rails_parent.get_child(Rail.RAIL_NUMBER_SUM)
-        rail.change_speed_rotate(chip.score)
+        rail.change_speed_rotate(1.0 / chip.score)
     elif chip.type in Data.CHIP_TYPES_TIME:
         var new_score = stack_scores[chip.rail_number] * chip.score
         _set_stack_score(chip.rail_number, new_score)
