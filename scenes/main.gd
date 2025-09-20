@@ -41,6 +41,7 @@ var total_time_sec := 0.0:
             int(total_time_sec * 1000) % 1000,
         ]
 
+var _is_game_playing := false
 var _is_game_started := false
 var _is_game_cleard := false
 var _label_score_sum: Label
@@ -77,11 +78,13 @@ func _process(delta: float) -> void:
     for node in _rails_parent.get_children():
         if node is Rail:
             var label: Label = _label_line_speed_parent.get_child(rail_index)
-            label.text = "x%1.2f" % [node.rotate_speed]
+            label.text = "x%1.3f" % [node.rotate_speed]
             rail_index += 1
 
 
 func _on_chip_sensed(chip: Chip) -> void:
+    if not _is_game_playing:
+        return
     if not _is_game_started:
         return
 
@@ -120,15 +123,19 @@ func _on_chip_fallen(chip: Chip) -> void:
 
 func _on_button_play_pressed() -> void:
     print("[Main] play.")
+    _is_game_playing = true
+    if not _is_game_started:
+        _is_game_started = true
+
     for node in _rails_parent.get_children():
         if node is Rail:
             node.start_rotate()
-    if not _is_game_started:
-        _is_game_started = true
 
 
 func _on_button_stop_pressed() -> void:
     print("[Main] stop.")
+    _is_game_playing = false
+
     for node in _rails_parent.get_children():
         if node is Rail:
             node.stop_rotate()
