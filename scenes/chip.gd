@@ -23,11 +23,10 @@ var score := -1
 var is_locked := false
 var is_hovering := false
 var is_dragging := false
-var is_overlapping := false
 var is_placed := false
 var center_offset: Vector2
 
-var _overrapping_holder: ChipHolder
+var _overrapping_holders: Array[ChipHolder]
 var _placed_holder: ChipHolder
 
 
@@ -99,9 +98,14 @@ func _on_entered_chip_sensor(chip_sensor: ChipSensor) -> void:
 
 
 func _on_entered_chip_holder(chip_holder: ChipHolder) -> void:
-    is_overlapping = true
     chip_holder.is_overlapped = true
-    _overrapping_holder = chip_holder
+
+    # apeend to _overrapping_holders
+    if not chip_holder.is_placed:
+        #print("_on_entered_chip_holder() id: %s" % [chip_holder.get_instance_id()])
+        _overrapping_holders.append(chip_holder)
+        #print("_on_entered_chip_holder() size: %s" % [_overrapping_holders.size()])
+
     _refresh_view()
 
 
@@ -110,31 +114,42 @@ func _on_exited_chip_sensor(sensor: ChipSensor) -> void:
 
 
 func _on_exited_chip_holder(holder: ChipHolder) -> void:
-    is_overlapping = false
     holder.is_overlapped = false
+
+    # remove from _overrapping_holders
+    var index := 0
+    for node in _overrapping_holders:
+        if node == holder:
+            #print("_on_exited_chip_sensor() id: %s" % [node.get_instance_id()])
+            _overrapping_holders.remove_at(index)
+            #print("_on_exited_chip_holder() size: %s" % [_overrapping_holders.size()])
+        index += 1
+
     _refresh_view()
 
 
 func _drag(on: bool) -> void:
     #print("_on_dragged(on: %s)" % [on])
     top_level = on
-    rail_number = -1
     is_dragging = on
-    is_placed = false
-    _refresh_view()
 
     if _placed_holder:
         _placed_holder.is_placed = false
 
     if on:
         print("[Chip %s] drag and... (type: %s, price: %s)" % [get_instance_id(), type, price])
-        pass
+        rail_number = -1
+        is_placed = false
+        _overrapping_holders.clear()
+        _refresh_view()
     else:
         # ChipHolder に配置する
-        if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
+        var holder: ChipHolder = _overrapping_holders.get(_overrapping_holders.size() - 1)
+        #print("_drag() size: %s, last holder: %s" % [_overrapping_holders.size(), holder])
+        if holder and not holder.is_placed:
             print("[Chip %s] drag and place." % [get_instance_id()])
             is_placed = true
-            _placed_holder = _overrapping_holder
+            _placed_holder = holder
             _placed_holder.is_placed = true
             reparent(_placed_holder.chips_parent)
             position = Vector2.ZERO - center_offset # NOTE: MUST after reparent()
@@ -144,7 +159,6 @@ func _drag(on: bool) -> void:
         else:
             print("[Chip %s] drag and fall." % [get_instance_id()])
             GlobalSignal.chip_fallen.emit(self)
-            # TODO: 枠
             queue_free()
 
 
@@ -159,7 +173,9 @@ func _refresh_view() -> void:
     # Outline
     _texture_rect_outline.visible = is_hovering or is_dragging
     if is_dragging:
-        if is_overlapping and _overrapping_holder and not _overrapping_holder.is_placed:
+        var holder: ChipHolder = _overrapping_holders.duplicate().pop_back()
+        #print("_refresh_view() holder: %s" % [holder])
+        if holder and not holder.is_placed:
             _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_RIDE
         else:
             _texture_rect_outline.modulate = OUTLINE_COLOR_CAN_NOT_RIDE
