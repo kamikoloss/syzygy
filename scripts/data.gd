@@ -12,11 +12,24 @@ enum ChipType {
     TIME_S_1, TIME_S_2, TIME_S_3, TIME_S_4,
 }
 
-const CHIP_TYPES_ADD := [ChipType.ADD_1, ChipType.ADD_2, ChipType.ADD_3, ChipType.ADD_4, ChipType.ADD_5, ChipType.ADD_6, ChipType.ADD_7]
-const CHIP_TYPES_SPEED := [ChipType.SPEED_1, ChipType.SPEED_2, ChipType.SPEED_3, ChipType.SPEED_4, ChipType.SPEED_5, ChipType.SPEED_6, ChipType.SPEED_7]
-const CHIP_TYPES_SPEED_S := [ChipType.SPEED_S_1, ChipType.SPEED_S_2, ChipType.SPEED_S_3, ChipType.SPEED_S_4]
-const CHIP_TYPES_TIME := [ChipType.TIME_1, ChipType.TIME_2, ChipType.TIME_3, ChipType.TIME_4, ChipType.TIME_5, ChipType.TIME_6, ChipType.TIME_7]
-const CHIP_TYPES_TIME_S := [ChipType.TIME_S_1, ChipType.TIME_S_2, ChipType.TIME_S_3, ChipType.TIME_S_4]
+const CHIP_TYPES_ADD := [
+    ChipType.ADD_1, ChipType.ADD_2, ChipType.ADD_3, ChipType.ADD_4,
+    ChipType.ADD_5, ChipType.ADD_6, ChipType.ADD_7,
+]
+const CHIP_TYPES_SPEED := [
+    ChipType.SPEED_1, ChipType.SPEED_2, ChipType.SPEED_3, ChipType.SPEED_4,
+    ChipType.SPEED_5, ChipType.SPEED_6, ChipType.SPEED_7,
+]
+const CHIP_TYPES_SPEED_S := [
+    ChipType.SPEED_S_1, ChipType.SPEED_S_2, ChipType.SPEED_S_3, ChipType.SPEED_S_4,
+]
+const CHIP_TYPES_TIME := [
+    ChipType.TIME_1, ChipType.TIME_2, ChipType.TIME_3, ChipType.TIME_4,
+    ChipType.TIME_5, ChipType.TIME_6, ChipType.TIME_7,
+]
+const CHIP_TYPES_TIME_S := [
+    ChipType.TIME_S_1, ChipType.TIME_S_2, ChipType.TIME_S_3, ChipType.TIME_S_4,
+]
 
 ## { ChipType: [ <Label>, <Color>, <score> ], ... }
 ## ref. https://v3.tailwindcss.com/docs/customizing-colors
